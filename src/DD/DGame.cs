@@ -20,6 +20,7 @@ namespace DD
         private readonly DGraphicsManager _graphicsManager;
         private readonly DComponentManager _componentManager;
         private readonly DEntityManager _entityManager;
+        private readonly DAssetsManager _assetsManager;
 
         // ================================= //
 
@@ -51,8 +52,9 @@ namespace DD
             this.TargetElapsedTime = DGraphicsConstants.FramesPerSecond;
 
             // Managers
-            this._componentManager = new();
             this._entityManager = new();
+            this._componentManager = new();
+            this._assetsManager = new(this.Content);
         }
 
         protected override void Initialize()
@@ -60,10 +62,12 @@ namespace DD
             this._graphicsManager.SetGameInstance(this);
             this._entityManager.SetGameInstance(this);
             this._componentManager.SetGameInstance(this);
+            this._assetsManager.SetGameInstance(this);
 
             this._graphicsManager.Initialize();
             this._entityManager.Initialize();
             this._componentManager.Initialize();
+            this._assetsManager.Initialize();
 
             base.Initialize();
         }
