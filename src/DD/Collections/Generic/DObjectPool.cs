@@ -4,10 +4,10 @@ using System.Collections.Generic;
 namespace DD.Collections.Generic
 {
     /// <summary>
-    /// A generic object pool for managing reusable objects that implement the <see cref="IPoolableObject"/> interface.
+    /// A generic object pool for managing reusable objects that implement the <see cref="IDPoolableObject"/> interface.
     /// </summary>
     /// <typeparam name="TObject">The type of objects stored in the pool.</typeparam>
-    public sealed class ObjectPool<TObject> where TObject : IPoolableObject
+    public sealed class DObjectPool<TObject> where TObject : IDPoolableObject
     {
         /// <summary>
         /// Gets the number of objects currently in the pool.

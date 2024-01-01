@@ -1,6 +1,8 @@
 ﻿using DD.Components;
 using DD.Objects;
 
+using Microsoft.Xna.Framework;
+
 namespace DD.Entities
 {
     internal abstract class DEntity : DGameObject
@@ -22,9 +24,9 @@ namespace DD.Entities
         {
             this.componentContainer.Initialize();
         }
-        protected override void OnUpdate()
+        protected override void OnUpdate(GameTime gameTime)
         {
-            this.componentContainer.Update();
+            this.componentContainer.Update(gameTime);
         }
     }
 }

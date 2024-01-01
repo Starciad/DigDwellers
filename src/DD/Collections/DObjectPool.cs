@@ -5,22 +5,22 @@ namespace DD.Collections
     /// <summary>
     /// An object pool for managing reusable objects that implement the IPoolableObject interface.
     /// </summary>
-    public sealed class ObjectPool
+    public sealed class DObjectPool
     {
         /// <summary>
         /// Gets the number of objects currently in the pool.
         /// </summary>
         public int Count => this._pool.Count;
 
-        private readonly Queue<IPoolableObject> _pool = new();
+        private readonly Queue<IDPoolableObject> _pool = new();
 
         /// <summary>
         /// Retrieves an object from the pool.
         /// </summary>
         /// <returns>The retrieved object.</returns>
-        public IPoolableObject Get()
+        public IDPoolableObject Get()
         {
-            IPoolableObject value;
+            IDPoolableObject value;
 
             if (this._pool.Count > 0)
             {
@@ -36,7 +36,7 @@ namespace DD.Collections
         /// Adds an object to the pool.
         /// </summary>
         /// <param name="value">The object to add to the pool.</param>
-        public void Add(IPoolableObject value)
+        public void Add(IDPoolableObject value)
         {
             this._pool.Enqueue(value);
         }

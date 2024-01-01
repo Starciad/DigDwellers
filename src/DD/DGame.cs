@@ -17,6 +17,7 @@ namespace DD
 
         // Managers
         private readonly DGraphicsManager _graphicsManager;
+        private readonly DComponentManager _componentManager;
 
         public DGame()
         {
@@ -44,11 +45,19 @@ namespace DD
             this.IsMouseVisible = true;
             this.IsFixedTimeStep = true;
             this.TargetElapsedTime = DGraphicsConstants.FramesPerSecond;
+
+            // Managers
+            this._componentManager = new();
         }
 
         protected override void Initialize()
         {
-            _graphicsManager.Initialize();
+            this._graphicsManager.SetGameInstance(this);
+            this._componentManager.SetGameInstance(this);
+
+            this._graphicsManager.Initialize();
+            this._componentManager.Initialize();
+
             base.Initialize();
         }
 

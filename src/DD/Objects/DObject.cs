@@ -1,4 +1,6 @@
-﻿namespace DD.Objects
+﻿using Microsoft.Xna.Framework;
+
+namespace DD.Objects
 {
     internal abstract class DObject
     {
@@ -7,13 +9,13 @@
             OnAwake();
             OnStart();
         }
-        internal void Update()
+        internal void Update(GameTime gameTime)
         {
-            OnUpdate();
+            OnUpdate(gameTime);
         }
 
         protected virtual void OnAwake() { }
         protected virtual void OnStart() { }
-        protected virtual void OnUpdate() { }
+        protected virtual void OnUpdate(GameTime gameTime) { }
     }
 }
