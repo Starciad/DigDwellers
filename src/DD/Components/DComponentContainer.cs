@@ -1,4 +1,5 @@
-﻿using DD.Entities;
+﻿using DD.Collections;
+using DD.Entities;
 using DD.Exceptions.Components;
 using DD.Objects;
 
@@ -6,10 +7,11 @@ using Microsoft.Xna.Framework;
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DD.Components
 {
-    internal sealed class DComponentContainer : DGameObject
+    internal sealed class DComponentContainer : DGameObject, IDPoolableObject
     {
         internal int Count => this._components.Count;
 
@@ -28,6 +30,10 @@ namespace DD.Components
         internal T GetComponent<T>() where T : DComponent
         {
             return (T)GetComponent(typeof(T));
+        }
+        internal void RemoveComponent<T>() where T : DComponent
+        {
+            RemoveComponent(typeof(T));
         }
         internal bool TryGetComponent<T>(out T value) where T : DComponent
         {
@@ -61,7 +67,7 @@ namespace DD.Components
                 throw new DDuplicateComponentsException($"The entity already contains a '{componentType.Name}' component.");
             }
 
-            DComponent componentValue = (DComponent)Activator.CreateInstance(componentType);
+            DComponent componentValue = this.Game.ComponentManager.Instantiate(componentType);
             componentValue.SetGameInstance(this.Game);
             componentValue.SetEntityInstance(this._entity);
             this._components.Add(componentType, componentValue);
@@ -70,6 +76,10 @@ namespace DD.Components
         internal DComponent GetComponent(Type componentType)
         {
             return this._components.TryGetValue(componentType, out DComponent value) ? value : null;
+        }
+        internal void RemoveComponent(Type componentType)
+        {
+            _ = TryRemoveComponent(componentType);
         }
         internal bool TryGetComponent(Type componentType, out DComponent value)
         {
@@ -85,6 +95,11 @@ namespace DD.Components
         }
         internal bool TryRemoveComponent(Type componentType)
         {
+            if (this._components.TryGetValue(componentType, out DComponent value))
+            {
+                this.Game.ComponentManager.Destroy(value);
+            }
+
             return this._components.Remove(componentType);
         }
         internal bool HasComponent(Type componentType)
@@ -95,7 +110,10 @@ namespace DD.Components
         }
         internal void RemoveAllComponents()
         {
-            this._components.Clear();
+            while (this._components.Count > 0)
+            {
+                RemoveComponent(this._components.First().Key);
+            }
         }
 
         protected override void OnAwake()
@@ -111,6 +129,11 @@ namespace DD.Components
             {
                 component.Update(gameTime);
             }
+        }
+
+        public void Reset()
+        {
+            RemoveAllComponents();
         }
     }
 }

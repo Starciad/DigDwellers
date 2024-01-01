@@ -1,11 +1,12 @@
-﻿using DD.Components;
+﻿using DD.Collections;
+using DD.Components;
 using DD.Objects;
 
 using Microsoft.Xna.Framework;
 
 namespace DD.Entities
 {
-    internal abstract class DEntity : DGameObject
+    internal abstract class DEntity : DGameObject, IDPoolableObject
     {
         internal string Name { get; set; }
         internal int Id { get; set; }
@@ -27,6 +28,11 @@ namespace DD.Entities
         protected override void OnUpdate(GameTime gameTime)
         {
             this.componentContainer.Update(gameTime);
+        }
+
+        public virtual void Reset()
+        {
+            this.componentContainer.Reset();
         }
     }
 }

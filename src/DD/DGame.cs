@@ -8,18 +8,20 @@ using System.Reflection;
 
 namespace DD
 {
-    public class DGame : Game
+    internal class DGame : Game
     {
+        public DComponentManager ComponentManager => this._componentManager;
+
+        // ================================= //
+
         private readonly Assembly _assembly;
-
-        // Renders
         private SpriteBatch _sb;
-
-        // Managers
         private readonly DGraphicsManager _graphicsManager;
         private readonly DComponentManager _componentManager;
 
-        public DGame()
+        // ================================= //
+
+        internal DGame()
         {
             // Initialize the game's graphics.
             _graphicsManager = new(new(this)
