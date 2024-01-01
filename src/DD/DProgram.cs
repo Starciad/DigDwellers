@@ -1,12 +1,15 @@
-﻿using System.Text;
+﻿using System;
+
+#if !DEBUG
+using System.Text;
 using System.Windows.Forms;
-using System;
 using DD.IO;
 using DD.Constants;
+#endif
 
 namespace DD
 {
-    internal static class Program
+    internal static class DProgram
     {
         [STAThread]
         private static void Main()

@@ -2,10 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 
 using DD.Constants;
+using DD.Objects;
 
 namespace DD.Managers
 {
-    internal sealed class DGraphicsManager
+    internal sealed class DGraphicsManager : DGameObject
     {
         internal GraphicsDeviceManager GraphicsDeviceManager => this._gdm;
         internal GraphicsDevice GraphicsDevice => this._gdm.GraphicsDevice;
@@ -26,7 +27,7 @@ namespace DD.Managers
             this._gdm = gdm;
         }
 
-        internal void Initialize()
+        protected override void OnAwake()
         {
             this.screenRenderTarget = new(this.GraphicsDevice, DScreenConstants.SCREEN_WIDTH, DScreenConstants.SCREEN_HEIGHT);
             this.uiRenderTarget = new(this.GraphicsDevice, DScreenConstants.SCREEN_WIDTH, DScreenConstants.SCREEN_HEIGHT);

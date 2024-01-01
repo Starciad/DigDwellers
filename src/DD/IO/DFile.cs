@@ -22,7 +22,7 @@ namespace DD.IO
             using (StringWriter stringBuilder = new())
             {
                 stringBuilder.WriteLine(exception.ToString());
-                File.WriteAllText(logFilePath, stringBuilder.ToString());
+                System.IO.File.WriteAllText(logFilePath, stringBuilder.ToString());
             }
 
             return logFilePath;

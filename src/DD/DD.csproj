@@ -18,6 +18,11 @@
 		<ApplicationManifest>Assets\app.manifest</ApplicationManifest>
 		<ApplicationIcon>Assets\Icon.ico</ApplicationIcon>
 	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="Collection\**" />
+	  <EmbeddedResource Remove="Collection\**" />
+	  <None Remove="Collection\**" />
+	</ItemGroup>
 
 	<!-- FILES (REMOVE) -->
 	<ItemGroup>
