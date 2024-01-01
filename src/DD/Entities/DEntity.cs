@@ -25,6 +25,7 @@ namespace DD.Entities
         {
             this.componentContainer.Initialize();
         }
+
         protected override void OnUpdate(GameTime gameTime)
         {
             this.componentContainer.Update(gameTime);

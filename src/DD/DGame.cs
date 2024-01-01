@@ -11,6 +11,7 @@ namespace DD
     internal class DGame : Game
     {
         public DComponentManager ComponentManager => this._componentManager;
+        public DEntityManager EntityManager => this._entityManager;
 
         // ================================= //
 
@@ -18,6 +19,7 @@ namespace DD
         private SpriteBatch _sb;
         private readonly DGraphicsManager _graphicsManager;
         private readonly DComponentManager _componentManager;
+        private readonly DEntityManager _entityManager;
 
         // ================================= //
 
@@ -50,14 +52,17 @@ namespace DD
 
             // Managers
             this._componentManager = new();
+            this._entityManager = new();
         }
 
         protected override void Initialize()
         {
             this._graphicsManager.SetGameInstance(this);
+            this._entityManager.SetGameInstance(this);
             this._componentManager.SetGameInstance(this);
 
             this._graphicsManager.Initialize();
+            this._entityManager.Initialize();
             this._componentManager.Initialize();
 
             base.Initialize();
@@ -76,6 +81,8 @@ namespace DD
 
         protected override void Update(GameTime gameTime)
         {
+            this._entityManager.Update(gameTime);
+
             base.Update(gameTime);
         }
 

@@ -39,12 +39,7 @@ namespace DD.Managers
         {
             Type componentType = component.GetType();
 
-            DObjectPool pool;
-            if (componentsPool.TryGetValue(componentType, out DObjectPool value))
-            {
-                pool = value;
-            }
-            else
+            if (!componentsPool.TryGetValue(componentType, out DObjectPool pool))
             {
                 pool = new();
                 componentsPool.Add(componentType, pool);
