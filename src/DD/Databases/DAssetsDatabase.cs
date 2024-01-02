@@ -29,10 +29,11 @@ namespace DD.Databases
             LoadMapxFiles();
         }
 
+        #region LOAD
         private void LoadTextures()
         {
-            string char_path = Path.Combine(DAssetsConstants.GRAPHICS_DIRECTORY, "characters");
-            string blocks_path = Path.Combine(DAssetsConstants.GRAPHICS_DIRECTORY, "blocks");
+            string char_path = Path.Combine(DDirectoryConstants.GRAPHICS_DIRECTORY, "characters");
+            string blocks_path = Path.Combine(DDirectoryConstants.GRAPHICS_DIRECTORY, "blocks");
 
             Loader(DAssetsConstants.TEXTURES_CHARACTERS_LENGTH, "char_", char_path);
             Loader(DAssetsConstants.TEXTURES_BLOCKS_LENGTH, "block_", blocks_path);
@@ -56,7 +57,7 @@ namespace DD.Databases
         private void LoadMapxFiles()
         {
             // PATHS
-            string mapx_path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DAssetsConstants.MAPX_DIRECTORY);
+            string mapx_path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DDirectoryConstants.ASSETS_DIRECTORY, DDirectoryConstants.MAPX_DIRECTORY);
             string specials_path = Path.Combine(mapx_path, "specials");
 
             // SPECIALS (LOAD)
@@ -65,5 +66,17 @@ namespace DD.Databases
             // CHUNKS (LOAD)
             // [ ... ]
         }
+        #endregion
+
+        #region GET
+        internal Texture2D GetTexture(string name)
+        {
+            return this.textures[name];
+        }
+        internal DMapxData GetMapxData(string name)
+        {
+            return this.mapxFiles[name];
+        }
+        #endregion
     }
 }

@@ -2,19 +2,29 @@
 using DD.Map.Elements;
 using DD.Objects;
 
-using System.Collections.Generic;
-
 namespace DD.Databases
 {
     internal sealed class DMapElementsDatabase : DGameObject
     {
-        private readonly DBlock[] blocks =
-        [
-            new(DBlockType.Empty, 0),
-            new(DBlockType.Dirt, 1),
-        ];
+        private DBlock[] blocks;
 
-        internal DBlock GetBlockInfos(DBlockType blockType)
+        private readonly DAssetsDatabase _assetsDatabase;
+
+        internal DMapElementsDatabase(DAssetsDatabase assetsDatabase)
+        {
+            this._assetsDatabase = assetsDatabase;
+        }
+
+        protected override void OnAwake()
+        {
+            this.blocks =
+            [
+                new(DBlockType.Empty, 0, null),
+                new(DBlockType.Dirt, 1, this._assetsDatabase.GetTexture("block_1")),
+            ];
+        }
+
+        internal DBlock GetBlock(DBlockType blockType)
         {
             return blocks[(sbyte)blockType];
         }

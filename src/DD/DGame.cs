@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System.Reflection;
+using System.Text;
 
 namespace DD
 {
@@ -55,14 +56,14 @@ namespace DD
             this.IsFixedTimeStep = true;
             this.TargetElapsedTime = DGraphicsConstants.FramesPerSecond;
 
+            // Database
+            this._assetsDatabase = new(this.Content);
+            this._mapElementsDatabase = new(this._assetsDatabase);
+
             // Managers
             this._entityManager = new();
             this._componentManager = new();
-            this._sceneManager = new();
-
-            // Database
-            this._assetsDatabase = new(this.Content);
-            this._mapElementsDatabase = new();
+            this._sceneManager = new(this._mapElementsDatabase);
         }
 
         protected override void Initialize()
@@ -102,13 +103,13 @@ namespace DD
 
         protected override void BeginRun()
         {
+            this._sceneManager.LoadScene(this._assetsDatabase.GetMapxData("home"));
             base.BeginRun();
         }
 
         protected override void Update(GameTime gameTime)
         {
             this._entityManager.Update(gameTime);
-
             base.Update(gameTime);
         }
 
@@ -117,30 +118,33 @@ namespace DD
             #region RENDERING (ELEMENTS)
             // UI
             this.GraphicsDevice.SetRenderTarget(this._graphicsManager.UIRenderTarget);
-            this.GraphicsDevice.Clear(Color.Black);
+            this.GraphicsDevice.Clear(Color.Transparent);
             this._sb.Begin();
             this._sb.End();
 
             // HUD
             this.GraphicsDevice.SetRenderTarget(this._graphicsManager.HUDRenderTarget);
-            this.GraphicsDevice.Clear(Color.Black);
+            this.GraphicsDevice.Clear(Color.Yellow);
             this._sb.Begin();
             this._sb.End();
 
             // VIEW
             this.GraphicsDevice.SetRenderTarget(this._graphicsManager.ViewRenderTarget);
-            this.GraphicsDevice.Clear(Color.Black);
+            this.GraphicsDevice.Clear(Color.Cyan);
             this._sb.Begin();
+            this._sceneManager.Draw(this._sb, gameTime);
             this._sb.End();
             #endregion
 
             #region RENDERING (SCREEN)
+            Vector2 scaleFactor = new(DScreenConstants.SCALE_FACTOR);
+
             this.GraphicsDevice.SetRenderTarget(this._graphicsManager.ScreenRenderTarget);
             this.GraphicsDevice.Clear(Color.Black);
             this._sb.Begin();
-            this._sb.Draw(this._graphicsManager.HUDRenderTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
-            this._sb.Draw(this._graphicsManager.ViewRenderTarget, new Vector2(0, DScreenConstants.HUD_HEIGHT + 1), null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
-            this._sb.Draw(this._graphicsManager.UIRenderTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
+            this._sb.Draw(this._graphicsManager.HUDRenderTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, scaleFactor, SpriteEffects.None, 0f);
+            this._sb.Draw(this._graphicsManager.ViewRenderTarget, new Vector2(0, DScreenConstants.HUD_HEIGHT), null, Color.White, 0f, Vector2.Zero, scaleFactor, SpriteEffects.None, 0f);
+            this._sb.Draw(this._graphicsManager.UIRenderTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, scaleFactor, SpriteEffects.None, 0f);
             this._sb.End();
             #endregion
 
