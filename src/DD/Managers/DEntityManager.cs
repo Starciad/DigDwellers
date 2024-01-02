@@ -1,5 +1,7 @@
 ﻿using DD.Collections;
+using DD.Components.Common;
 using DD.Entities;
+using DD.Exceptions.Entities;
 using DD.Map.Serialization;
 using DD.Objects;
 
@@ -51,15 +53,50 @@ namespace DD.Managers
 
         public T Instantiate<T>() where T : DEntity
         {
-            return (T)Instantiate(typeof(T));
+            return Instantiate<T>(Vector2.Zero);
+        }
+        public T Instantiate<T>(Vector2 position) where T : DEntity
+        {
+            return Instantiate<T>(position, Vector2.One);
+        }
+        public T Instantiate<T>(Vector2 position, Vector2 scale) where T : DEntity
+        {
+            return Instantiate<T>(position, scale, 0f);
+        }
+        public T Instantiate<T>(Vector2 position, Vector2 scale, float rotation) where T : DEntity
+        {
+            return (T)Instantiate(typeof(T), position, scale, rotation);
         }
         public DEntity Instantiate(Type type)
         {
+            return Instantiate(type, Vector2.Zero);
+        }
+        public DEntity Instantiate(Type type, Vector2 position)
+        {
+            return Instantiate(type, position, Vector2.One);
+        }
+        public DEntity Instantiate(Type type, Vector2 position, Vector2 scale)
+        {
+            return Instantiate(type, position, scale, 0f);
+        }
+        public DEntity Instantiate(Type type, Vector2 position, Vector2 scale, float rotation)
+        {
+            if (!typeof(DEntity).IsAssignableFrom(type))
+            {
+                throw new DInvalidEntityTypeException($"The type '{type}' is not a valid DEntity.");
+            }
+
             DEntity entity = GetEntityFromObjectPool(type);
 
+            entity.SetGameInstance(this.Game);
             entity.Initialize();
-            this.activeEntities.Add(entity);
 
+            DTransformComponent transform = entity.ComponentContainer.AddComponent<DTransformComponent>();
+            transform.SetPosition(position);
+            transform.Resize(scale);
+            transform.SetRotation(rotation);
+
+            this.activeEntities.Add(entity);
             return entity;
         }
         internal void Destroy(DEntity entity)

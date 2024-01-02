@@ -18,7 +18,7 @@ namespace DD.Components.Common
 
         internal void SetPosition(Vector2 newPosition)
         {
-            Position = newPosition;
+            this.Position = newPosition;
         }
 
         internal void SetRotation(float angleInRadians)
@@ -28,17 +28,17 @@ namespace DD.Components.Common
 
         internal void MoveRelative(Vector2 offset)
         {
-            Position += offset;
+            this.Position += offset;
         }
 
         internal void Resize(Vector2 newScale)
         {
-            Scale = newScale;
+            this.Scale = newScale;
         }
 
         internal void Rotate(float angleInRadians)
         {
-            Rotation += angleInRadians;
+            this.Rotation += angleInRadians;
         }
     }
 }

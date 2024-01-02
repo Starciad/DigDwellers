@@ -19,7 +19,7 @@ namespace DD.Managers
 
         internal DComponent Instantiate(Type componentType)
         {
-            if (!componentType.IsSubclassOf(typeof(DComponent)))
+            if (!typeof(DComponent).IsAssignableFrom(componentType))
             {
                 throw new DInvalidComponentTypeException($"The type '{componentType.Name}' is not a valid {nameof(DComponent)}.");
             }

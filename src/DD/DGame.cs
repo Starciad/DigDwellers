@@ -1,5 +1,6 @@
 ﻿using DD.Constants;
 using DD.Databases;
+using DD.Entities.Common.Player;
 using DD.Managers;
 
 using Microsoft.Xna.Framework;
@@ -13,6 +14,7 @@ namespace DD
     {
         public DComponentManager ComponentManager => this._componentManager;
         public DEntityManager EntityManager => this._entityManager;
+        public DAssetsDatabase AssetsDatabase => this._assetsDatabase;
 
         // ================================= //
 
@@ -108,6 +110,8 @@ namespace DD
 
         protected override void BeginRun()
         {
+            this._entityManager.Instantiate<DPlayer>(new(DScreenConstants.DEFAULT_WIDTH / 2, DScreenConstants.DEFAULT_HEIGHT / 2));
+
             this._sceneManager.LoadScene(this._assetsDatabase.GetMapxData("home"));
             base.BeginRun();
         }
@@ -138,6 +142,7 @@ namespace DD
             this.GraphicsDevice.Clear(Color.Cyan);
             this._sb.Begin();
             this._tileMapManager.Draw(this._sb, gameTime);
+            this._entityManager.Draw(this._sb, gameTime);
             this._sb.End();
             #endregion
 

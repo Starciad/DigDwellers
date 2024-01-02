@@ -57,7 +57,7 @@ namespace DD.Components
 
         internal DComponent AddComponent(Type componentType)
         {
-            if (!componentType.IsSubclassOf(typeof(DComponent)))
+            if (!typeof(DComponent).IsAssignableFrom(componentType))
             {
                 throw new DInvalidComponentTypeException($"The type '{componentType.Name}' is not a valid {nameof(DComponent)}.");
             }
@@ -104,7 +104,7 @@ namespace DD.Components
         }
         internal bool HasComponent(Type componentType)
         {
-            return !componentType.IsSubclassOf(typeof(DComponent))
+            return !typeof(DComponent).IsAssignableFrom(componentType)
                 ? throw new DInvalidComponentTypeException($"The type '{componentType.Name}' is not a valid {nameof(DComponent)}.")
                 : this._components.ContainsKey(componentType);
         }

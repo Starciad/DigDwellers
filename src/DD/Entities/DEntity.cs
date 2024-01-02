@@ -3,6 +3,7 @@ using DD.Components;
 using DD.Objects;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace DD.Entities
 {
@@ -29,6 +30,11 @@ namespace DD.Entities
         protected override void OnUpdate(GameTime gameTime)
         {
             this.componentContainer.Update(gameTime);
+        }
+
+        protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            this.componentContainer.Draw(spriteBatch, gameTime);
         }
 
         public virtual void Reset()
