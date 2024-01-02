@@ -1,4 +1,5 @@
 ﻿using DD.Constants;
+using DD.Databases;
 using DD.Managers;
 
 using Microsoft.Xna.Framework;
@@ -20,8 +21,10 @@ namespace DD
         private readonly DGraphicsManager _graphicsManager;
         private readonly DComponentManager _componentManager;
         private readonly DEntityManager _entityManager;
-        private readonly DAssetsManager _assetsManager;
         private readonly DSceneManager _sceneManager;
+
+        private readonly DAssetsDatabase _assetsDatabase;
+        private readonly DMapElementsDatabase _mapElementsDatabase;
 
         // ================================= //
 
@@ -55,23 +58,38 @@ namespace DD
             // Managers
             this._entityManager = new();
             this._componentManager = new();
-            this._assetsManager = new(this.Content);
             this._sceneManager = new();
+
+            // Database
+            this._assetsDatabase = new(this.Content);
+            this._mapElementsDatabase = new();
         }
 
         protected override void Initialize()
         {
+            #region Managers
+            // Settings
             this._graphicsManager.SetGameInstance(this);
             this._entityManager.SetGameInstance(this);
             this._componentManager.SetGameInstance(this);
-            this._assetsManager.SetGameInstance(this);
             this._sceneManager.SetGameInstance(this);
 
+            // Initialize
             this._graphicsManager.Initialize();
             this._entityManager.Initialize();
             this._componentManager.Initialize();
-            this._assetsManager.Initialize();
             this._sceneManager.Initialize();
+            #endregion
+
+            #region Database
+            // Settings
+            this._assetsDatabase.SetGameInstance(this);
+            this._mapElementsDatabase.SetGameInstance(this);
+
+            // Initialize
+            this._assetsDatabase.Initialize();
+            this._mapElementsDatabase.Initialize();
+            #endregion
 
             base.Initialize();
         }

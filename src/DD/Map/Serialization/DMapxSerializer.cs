@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace DD.Mapx
+namespace DD.Map.Serialization
 {
     internal static class DMapxSerializer
     {
-        private const int WIDTH = DMapConstants.CHUNK_WIDTH;
-        private const int HEIGHT = DMapConstants.CHUNK_HEIGHT;
+        private const int WIDTH = DMapConstants.TILEMAP_SIZE_WIDTH;
+        private const int HEIGHT = DMapConstants.TILEMAP_SIZE_HEIGHT;
 
         private const string TAG_START_CHARACTER = "[";
         private const string TAG_END_OPENING = "_OPEN]";

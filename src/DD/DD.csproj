@@ -45,7 +45,6 @@
 		<Folder Include="assets\mapx\chunks\sub2\" />
 		<Folder Include="assets\mapx\chunks\sub1\" />
 		<Folder Include="assets\mapx\chunks\sub0\" />
-		<Folder Include="Databases\" />
 		<!--<EmbeddedResource Include="assets\icon.bmp">
 			<LogicalName>icon.bmp</LogicalName>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

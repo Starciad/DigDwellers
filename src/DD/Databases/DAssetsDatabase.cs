@@ -1,5 +1,5 @@
 ﻿using DD.Constants;
-using DD.Mapx;
+using DD.Map.Serialization;
 using DD.Objects;
 
 using Microsoft.Xna.Framework.Content;
@@ -9,9 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace DD.Managers
+namespace DD.Databases
 {
-    internal sealed class DAssetsManager : DGameObject
+    internal sealed class DAssetsDatabase : DGameObject
     {
         private readonly ContentManager _cm;
 
@@ -21,7 +21,7 @@ namespace DD.Managers
         private const string GRAPHICS_DIRECTORY = "graphics";
         private const string MAPX_DIRECTORY = "mapx";
 
-        internal DAssetsManager(ContentManager contentManager)
+        internal DAssetsDatabase(ContentManager contentManager)
         {
             this._cm = contentManager;
         }

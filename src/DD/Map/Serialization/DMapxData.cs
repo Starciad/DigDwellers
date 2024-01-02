@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DD.Mapx
+namespace DD.Map.Serialization
 {
     internal sealed class DMapxData
     {
