@@ -1,4 +1,5 @@
-﻿using DD.Objects;
+﻿using DD.Constants;
+using DD.Objects;
 
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,6 +15,8 @@ namespace DD.Managers
 
         private readonly Dictionary<string, Texture2D> textures = [];
 
+        private const string GRAPHICS_DIRECTORY = "graphics";
+
         internal DAssetsManager(ContentManager contentManager)
         {
             this._cm = contentManager;
@@ -26,25 +29,26 @@ namespace DD.Managers
 
         private void LoadTextures()
         {
-            string char_path = Path.Combine("graphics", "characters");
-            string blocks_path = Path.Combine("graphics", "blocks");
+            string char_path = Path.Combine(GRAPHICS_DIRECTORY, "characters");
+            string blocks_path = Path.Combine(GRAPHICS_DIRECTORY, "blocks");
 
-            const int char_length = 1;
-            const int blocks_length = 4;
+            Loader(DAssetsConstants.TEXTURES_CHARACTERS_LENGTH, "char_", char_path);
+            Loader(DAssetsConstants.TEXTURES_BLOCKS_LENGTH, "block_", blocks_path);
 
-            // Characters
-            int targetId;
-            for (int i = 0; i < char_length; i++)
+            void Loader(int length, string prefix, string path)
             {
-                targetId = i + 1;
-                this.textures.Add($"char_{targetId}", this._cm.Load<Texture2D>(Path.Combine(char_path, $"char_{targetId}")));
-            }
+                int targetId;
+                string targetName;
+                string targetPath;
 
-            // Blocks
-            for (int i = 0; i < blocks_length; i++)
-            {
-                targetId = i + 1;
-                this.textures.Add($"block_{targetId}", this._cm.Load<Texture2D>(Path.Combine(blocks_path, $"block_{targetId}")));
+                for (int i = 0; i < length; i++)
+                {
+                    targetId = i + 1;
+                    targetName = string.Concat(prefix, targetId);
+                    targetPath = Path.Combine(path, targetName);
+
+                    this.textures.Add(targetName, this._cm.Load<Texture2D>(targetPath));
+                }
             }
         }
     }
