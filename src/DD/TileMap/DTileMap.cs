@@ -18,13 +18,27 @@ namespace DD.TileMap
             this.tiles = new DTile[width, height];
         }
 
+        internal bool IsEmpty(int x, int y)
+        {
+            return this.tiles[x, y].IsEmpty;
+        }
+
         internal void SetBlockType(DBlockType type, int x, int y)
         {
             this.tiles[x, y].SetBlock(type);
         }
+        internal void SetBGOType(DBgoType type, int x, int y)
+        {
+            this.tiles[x, y].SetBgo(type);
+        }
+
         internal DBlockType GetBlockType(int x, int y)
         {
             return this.tiles[x, y].GetBlock();
+        }
+        internal DBgoType GetBgoType(int x, int y)
+        {
+            return this.tiles[x, y].GetBgo();
         }
 
         internal void Clear()

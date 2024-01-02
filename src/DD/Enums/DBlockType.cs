@@ -3,6 +3,7 @@
     internal enum DBlockType : sbyte
     {
         Empty = 0,
-        Dirt = 1
+        Dirt = 1,
+        Plataform = 2,
     }
 }

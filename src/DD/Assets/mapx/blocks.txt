@@ -4,7 +4,8 @@
 
 [BGOS]
 000 = Empty
-001 = Van
+001 = White square
+002 = Grass
 
 [NPCS]
 000 = Name

@@ -4,6 +4,6 @@
     {
         internal const string BLOCKS = "BLOCKS";
         internal const string BGOS = "BGOS";
-        internal const string NPCS = "NPCS";
+        internal const string ENTITIES = "ENTITIES";
     }
 }

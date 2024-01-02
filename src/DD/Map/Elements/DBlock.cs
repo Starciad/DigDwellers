@@ -1,7 +1,5 @@
 ﻿using DD.Enums;
-using DD.Extensions;
 
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace DD.Map.Elements
