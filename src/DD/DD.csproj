@@ -16,7 +16,7 @@
 		<AssemblyName>DigDwellers</AssemblyName>
 		<RootNamespace>DD</RootNamespace>
 		<ApplicationManifest>Assets\app.manifest</ApplicationManifest>
-		<ApplicationIcon>Assets\Icon.ico</ApplicationIcon>
+		<ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 	</PropertyGroup>
 	<ItemGroup>
 		<Compile Remove="Collection\**" />
@@ -26,8 +26,8 @@
 
 	<!-- FILES (REMOVE) -->
 	<ItemGroup>
-		<None Remove="Icon.ico" />
-		<None Remove="Icon.bmp" />
+		<None Remove="icon.ico" />
+		<None Remove="icon.bmp" />
 	</ItemGroup>
 
 	<!-- FILES (RESOURCE) -->
@@ -36,24 +36,21 @@
 		<Folder Include="Assets\world\chunks\" />
 
 		<!-- EMBED -->
-		<EmbeddedResource Include="Assets\Icon.ico">
-			<LogicalName>Icon.ico</LogicalName>
+		<EmbeddedResource Include="assets\icon.ico">
+			<LogicalName>icon.ico</LogicalName>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<!--<EmbeddedResource Include="Assets\Icon.bmp">
-			<LogicalName>Icon.bmp</LogicalName>
+		<!--<EmbeddedResource Include="assets\icon.bmp">
+			<LogicalName>icon.bmp</LogicalName>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>-->
 
 		<!-- WORLD -->
-		<None Update="Assets\world\areas\legendary_cave.mapx">
+		<None Update="assets\world\areas\legendary_cave.mapx">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="Assets\world\areas\home.mapx">
+		<None Update="assets\world\areas\home.mapx">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="Assets\world\templates\empty.mapx">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 

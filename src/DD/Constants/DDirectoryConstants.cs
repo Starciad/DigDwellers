@@ -2,6 +2,6 @@
 {
     internal static class DDirectoryConstants
     {
-        internal const string ASSETS_DIRECTORY = "Assets";
+        internal const string ASSETS_DIRECTORY = "assets";
     }
 }
