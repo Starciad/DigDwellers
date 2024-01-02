@@ -18,13 +18,13 @@ namespace DD.Managers
         {
             UnloadScene();
 
-            _tileMapManager.Load(data);
-            _entityManager.Load(data);
+            this._tileMapManager.Load(data);
+            this._entityManager.Load(data);
         }
         internal void UnloadScene()
         {
-            _tileMapManager.Unload();
-            _entityManager.Unload();
+            this._tileMapManager.Unload();
+            this._entityManager.Unload();
         }
     }
 }

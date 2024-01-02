@@ -1,17 +1,17 @@
-﻿using DD.Databases;
+﻿using DD.Constants;
+using DD.Databases;
+using DD.Enums;
+using DD.Extensions;
 using DD.Map.Elements;
+using DD.Map.Serialization;
+using DD.Objects;
 using DD.TileMap;
 using DD.Utilities;
-using DD.Objects;
-using DD.Constants;
-using DD.Extensions;
-using DD.Map.Serialization;
-using DD.Enums;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 using System.Collections.Generic;
-
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
 
 namespace DD.Managers
 {
@@ -41,7 +41,7 @@ namespace DD.Managers
             {
                 blocks_value.IterateThroughArray(new((value, x, y) =>
                 {
-                    tilemap.SetBlockType((DBlockType)value, x, y);
+                    this.tilemap.SetBlockType((DBlockType)value, x, y);
                 }));
             }
 
@@ -50,13 +50,13 @@ namespace DD.Managers
             {
                 bgos_value.IterateThroughArray(new((value, x, y) =>
                 {
-                    tilemap.SetBgoType((DBgoType)value, x, y);
+                    this.tilemap.SetBgoType((DBgoType)value, x, y);
                 }));
             }
         }
         internal void Unload()
         {
-            tilemap.Clear();
+            this.tilemap.Clear();
         }
 
         // System
@@ -88,12 +88,12 @@ namespace DD.Managers
 
                     if (!block.IsEmpty)
                     {
-                        activeBlocks.Add((block, worldPosition));
+                        this.activeBlocks.Add((block, worldPosition));
                     }
 
                     if (!bgo.IsEmpty)
                     {
-                        activeBGOs.Add((bgo, worldPosition));
+                        this.activeBGOs.Add((bgo, worldPosition));
                     }
                 }
             }

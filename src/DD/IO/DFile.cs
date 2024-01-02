@@ -1,7 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using DD.Constants;
 
-using DD.Constants;
+using System;
+using System.IO;
 
 namespace DD.IO
 {

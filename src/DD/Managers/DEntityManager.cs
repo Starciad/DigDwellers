@@ -14,17 +14,16 @@ namespace DD.Managers
     {
         internal DEntity[] ActiveEntities => this.activeEntities.ToArray();
 
-        // Pool
         private readonly Dictionary<Type, DObjectPool> entityPool = [];
         private readonly List<DEntity> activeEntities = [];
 
         internal void Load(DMapxData data)
         {
-
+            return;
         }
         internal void Unload()
         {
-
+            return;
         }
 
         protected override void OnUpdate(GameTime gameTime)
