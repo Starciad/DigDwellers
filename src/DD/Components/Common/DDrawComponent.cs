@@ -6,7 +6,7 @@ namespace DD.Components.Common
     internal sealed class DDrawComponent : DComponent
     {
         internal Texture2D Texture { get; private set; }
-        internal Rectangle SourceRectangle { get; private set; }
+        internal Rectangle? SourceRectangle { get; private set; }
         internal Vector2 Position { get; private set; }
         internal Vector2 Scale { get; private set; }
         internal float Rotation { get; private set; }
@@ -21,7 +21,7 @@ namespace DD.Components.Common
         {
             base.Reset();
             this.Texture = null;
-            this.SourceRectangle = Rectangle.Empty;
+            this.SourceRectangle = null;
             this.Position = Vector2.Zero;
             this.Scale = Vector2.Zero;
             this.Color = Color.White;
@@ -29,9 +29,9 @@ namespace DD.Components.Common
             this.SpriteEffects = SpriteEffects.None;
             this.LayerDepth = 0f;
         }
-        protected override void OnStart()
+        protected override void OnAwake()
         {
-            base.OnStart();
+            base.OnAwake();
 
             this.Entity.ComponentContainer.TryGetComponent(out _transformComponent);
         }
@@ -62,7 +62,7 @@ namespace DD.Components.Common
         {
             this.Texture = value;
         }
-        internal void SetSourceRectangle(Rectangle value)
+        internal void SetSourceRectangle(Rectangle? value)
         {
             this.SourceRectangle = value;
         }

@@ -6,6 +6,7 @@ using DD.Map.Serialization;
 using DD.Objects;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,13 @@ namespace DD.Managers
 {
     internal sealed class DEntityManager : DGameObject
     {
-        internal DEntity[] ActiveEntities => this.activeEntities.ToArray();
+        internal DEntity[] ActiveEntities => [.. this.activeEntities];
 
         private readonly Dictionary<Type, DObjectPool> entityPool = [];
         private readonly List<DEntity> activeEntities = [];
+
+        private DEntity[] activeEntitiesArray;
+        private int activeEntitiesLength;
 
         internal void Load(DMapxData data)
         {
@@ -30,14 +34,36 @@ namespace DD.Managers
 
         protected override void OnUpdate(GameTime gameTime)
         {
-            foreach (DEntity entity in this.ActiveEntities)
+            this.activeEntitiesArray = [.. this.activeEntities];
+            this.activeEntitiesLength = activeEntitiesArray.Length;
+
+            for (int i = 0; i < this.activeEntitiesLength; i++)
             {
-                if (entity != null)
+                DEntity entity = this.activeEntitiesArray[i];
+                if (entity == null)
                 {
                     continue;
                 }
 
                 entity.Update(gameTime);
+            }
+        }
+        protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            for (int i = 0; i < this.activeEntitiesLength; i++)
+            {
+                DEntity entity = this.activeEntitiesArray[i];
+                if (entity == null)
+                {
+                    continue;
+                }
+
+                if (!entity.ComponentContainer.TryGetComponent(out DDrawComponent drawComponent))
+                {
+                    continue;
+                }
+
+                drawComponent.Draw(spriteBatch, gameTime);
             }
         }
 
@@ -87,15 +113,14 @@ namespace DD.Managers
             }
 
             DEntity entity = GetEntityFromObjectPool(type);
-
             entity.SetGameInstance(this.Game);
-            entity.Initialize();
 
             DTransformComponent transform = entity.ComponentContainer.AddComponent<DTransformComponent>();
             transform.SetPosition(position);
             transform.Resize(scale);
             transform.SetRotation(rotation);
 
+            entity.Initialize();
             this.activeEntities.Add(entity);
             return entity;
         }
