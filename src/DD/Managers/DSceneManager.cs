@@ -113,20 +113,11 @@ namespace DD.Managers
             // LOAD BGOS
             if (data.TryGetValue(DMapxConstants.BGOS, out sbyte[,] bgos_value))
             {
-                blocks_value.IterateThroughArray(new((value, x, y) =>
+                bgos_value.IterateThroughArray(new((value, x, y) =>
                 {
-                    tilemap.SetBlockType((DBlockType)value, x, y);
+                    tilemap.SetBgoType((DBgoType)value, x, y);
                 }));
             }
-
-            // LOAD ENTITIES
-            //if (data.TryGetValue(DMapxConstants.ENTITIES, out sbyte[,] entities_value))
-            //{
-            //    blocks_value.IterateThroughArray(new((value, x, y) =>
-            //    {
-            //        tilemap.SetBlockType((DBlockType)value, x, y);
-            //    }));
-            //}
         }
         internal void UnloadScene()
         {

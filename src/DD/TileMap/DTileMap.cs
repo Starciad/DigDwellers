@@ -27,7 +27,7 @@ namespace DD.TileMap
         {
             this.tiles[x, y].SetBlock(type);
         }
-        internal void SetBGOType(DBgoType type, int x, int y)
+        internal void SetBgoType(DBgoType type, int x, int y)
         {
             this.tiles[x, y].SetBgo(type);
         }
