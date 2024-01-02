@@ -26,11 +26,11 @@ namespace DD.Utilities
 
         internal static Vector2 ToWorldPosition(float x, float y)
         {
-            return new Vector2(x, y);
+            return ToWorldPosition(new(x, y));
         }
         internal static Vector2 ToWorldPosition(int x, int y)
         {
-            return new Vector2(x, y);
+            return ToWorldPosition(new(x, y));
         }
         internal static Vector2 ToWorldPosition(Vector2 position)
         {
