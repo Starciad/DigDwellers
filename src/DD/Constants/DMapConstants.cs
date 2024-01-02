@@ -1,6 +1,6 @@
 ﻿namespace DD.Constants
 {
-    internal static class DWorldConstants
+    internal static class DMapConstants
     {
         internal const int WORLD_WIDTH = 5;
         internal const int WORLD_HEIGHT = 6;
