@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DD.Mapx;
+
+using System;
+using System.IO;
 
 #if !DEBUG
 using System.Text;

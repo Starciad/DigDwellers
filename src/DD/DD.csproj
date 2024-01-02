@@ -19,9 +19,9 @@
 		<ApplicationIcon>Assets\Icon.ico</ApplicationIcon>
 	</PropertyGroup>
 	<ItemGroup>
-	  <Compile Remove="Collection\**" />
-	  <EmbeddedResource Remove="Collection\**" />
-	  <None Remove="Collection\**" />
+		<Compile Remove="Collection\**" />
+		<EmbeddedResource Remove="Collection\**" />
+		<None Remove="Collection\**" />
 	</ItemGroup>
 
 	<!-- FILES (REMOVE) -->
@@ -32,6 +32,9 @@
 
 	<!-- FILES (RESOURCE) -->
 	<ItemGroup>
+		<!-- FOLDERS -->
+		<Folder Include="Assets\world\chunks\" />
+
 		<!-- EMBED -->
 		<EmbeddedResource Include="Assets\Icon.ico">
 			<LogicalName>Icon.ico</LogicalName>
@@ -41,6 +44,17 @@
 			<LogicalName>Icon.bmp</LogicalName>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>-->
+
+		<!-- WORLD -->
+		<None Update="Assets\world\areas\legendary_cave.mapx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Assets\world\areas\home.mapx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Assets\world\templates\empty.mapx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 	<!-- DEPENDENCIES -->

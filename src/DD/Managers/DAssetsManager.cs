@@ -30,7 +30,7 @@ namespace DD.Managers
             string blocks_path = Path.Combine("graphics", "blocks");
 
             const int char_length = 1;
-            const int blocks_length = 3;
+            const int blocks_length = 4;
 
             // Characters
             int targetId;

@@ -1,0 +1,18 @@
+[ BLOCKS IDs ]
+000 = Empty
+001 = Dirt
+002 = Grass
+003 = Plataform
+004 = Rope
+
+[BGOS]
+000 = Name
+
+[NPCS]
+000 = Name
+
+[PLAYER]
+000 = Name
+
+[ITEMS]
+000 = Name
