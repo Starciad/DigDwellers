@@ -37,7 +37,7 @@ namespace DD.Managers
             for (int i = 0; i < char_length; i++)
             {
                 targetId = i + 1;
-                this.textures.Add($"char_{targetId}", this._cm.Load<Texture2D>(Path.Combine(char_path, $"char_{i}")));
+                this.textures.Add($"char_{targetId}", this._cm.Load<Texture2D>(Path.Combine(char_path, $"char_{targetId}")));
             }
 
             // Blocks
