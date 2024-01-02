@@ -21,6 +21,7 @@ namespace DD
         private readonly DGraphicsManager _graphicsManager;
         private readonly DComponentManager _componentManager;
         private readonly DEntityManager _entityManager;
+        private readonly DTileMapManager _tileMapManager;
         private readonly DSceneManager _sceneManager;
 
         private readonly DAssetsDatabase _assetsDatabase;
@@ -62,7 +63,10 @@ namespace DD
             // Managers
             this._entityManager = new();
             this._componentManager = new();
-            this._sceneManager = new(this._mapElementsDatabase);
+            this._tileMapManager = new(this._mapElementsDatabase);
+
+            // Scene
+            this._sceneManager = new(this._entityManager, this._tileMapManager);
         }
 
         protected override void Initialize()
@@ -72,12 +76,14 @@ namespace DD
             this._graphicsManager.SetGameInstance(this);
             this._entityManager.SetGameInstance(this);
             this._componentManager.SetGameInstance(this);
+            this._tileMapManager.SetGameInstance(this);
             this._sceneManager.SetGameInstance(this);
 
             // Initialize
             this._graphicsManager.Initialize();
             this._entityManager.Initialize();
             this._componentManager.Initialize();
+            this._tileMapManager.Initialize();
             this._sceneManager.Initialize();
             #endregion
 
@@ -127,11 +133,11 @@ namespace DD
             this._sb.Begin();
             this._sb.End();
 
-            // VIEW
-            this.GraphicsDevice.SetRenderTarget(this._graphicsManager.ViewRenderTarget);
+            // SCENE
+            this.GraphicsDevice.SetRenderTarget(this._graphicsManager.SceneRenderTarget);
             this.GraphicsDevice.Clear(Color.Cyan);
             this._sb.Begin();
-            this._sceneManager.Draw(this._sb, gameTime);
+            this._tileMapManager.Draw(this._sb, gameTime);
             this._sb.End();
             #endregion
 
@@ -140,7 +146,7 @@ namespace DD
             this.GraphicsDevice.Clear(Color.Black);
             this._sb.Begin();
             this._sb.Draw(this._graphicsManager.HUDRenderTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
-            this._sb.Draw(this._graphicsManager.ViewRenderTarget, new Vector2(0, DScreenConstants.HUD_HEIGHT), null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
+            this._sb.Draw(this._graphicsManager.SceneRenderTarget, new Vector2(0, DScreenConstants.HUD_HEIGHT), null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
             this._sb.Draw(this._graphicsManager.UIRenderTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
             this._sb.End();
             #endregion

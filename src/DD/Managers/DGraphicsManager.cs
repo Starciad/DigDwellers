@@ -14,13 +14,13 @@ namespace DD.Managers
         public RenderTarget2D ScreenRenderTarget => this.screenRenderTarget;
         public RenderTarget2D UIRenderTarget => this.uiRenderTarget;
         public RenderTarget2D HUDRenderTarget => this.hudRenderTarget;
-        public RenderTarget2D ViewRenderTarget => this.viewRenderTarget;
+        public RenderTarget2D SceneRenderTarget => this.sceneRenderTarget;
 
         private readonly GraphicsDeviceManager _gdm;
         private RenderTarget2D screenRenderTarget;
         private RenderTarget2D uiRenderTarget;
         private RenderTarget2D hudRenderTarget;
-        private RenderTarget2D viewRenderTarget;
+        private RenderTarget2D sceneRenderTarget;
 
         internal DGraphicsManager(GraphicsDeviceManager gdm)
         {
@@ -32,7 +32,7 @@ namespace DD.Managers
             this.screenRenderTarget = new(this.GraphicsDevice, DScreenConstants.SCREEN_WIDTH, DScreenConstants.SCREEN_HEIGHT);
             this.uiRenderTarget = new(this.GraphicsDevice, DScreenConstants.SCREEN_WIDTH, DScreenConstants.SCREEN_HEIGHT);
             this.hudRenderTarget = new(this.GraphicsDevice, DScreenConstants.HUD_WIDTH, DScreenConstants.HUD_HEIGHT);
-            this.viewRenderTarget = new(this.GraphicsDevice, DScreenConstants.VIEW_WIDTH, DScreenConstants.VIEW_HEIGHT);
+            this.sceneRenderTarget = new(this.GraphicsDevice, DScreenConstants.VIEW_WIDTH, DScreenConstants.VIEW_HEIGHT);
         }
     }
 }

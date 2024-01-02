@@ -1,5 +1,6 @@
 ﻿using DD.Collections;
 using DD.Entities;
+using DD.Map.Serialization;
 using DD.Objects;
 
 using Microsoft.Xna.Framework;
@@ -17,6 +18,15 @@ namespace DD.Managers
         private readonly Dictionary<Type, DObjectPool> entityPool = [];
         private readonly List<DEntity> activeEntities = [];
 
+        internal void Load(DMapxData data)
+        {
+
+        }
+        internal void Unload()
+        {
+
+        }
+
         protected override void OnUpdate(GameTime gameTime)
         {
             foreach (DEntity entity in this.ActiveEntities)
@@ -30,11 +40,6 @@ namespace DD.Managers
             }
         }
 
-        internal static void Draw()
-        {
-            return;
-        }
-
         internal void Reset()
         {
             foreach (DEntity entity in this.ActiveEntities)
@@ -45,12 +50,11 @@ namespace DD.Managers
             this.activeEntities.Clear();
         }
 
-        public T Create<T>() where T : DEntity
+        public T Instantiate<T>() where T : DEntity
         {
-            return (T)Create(typeof(T));
+            return (T)Instantiate(typeof(T));
         }
-
-        public DEntity Create(Type type)
+        public DEntity Instantiate(Type type)
         {
             DEntity entity = GetEntityFromObjectPool(type);
 
@@ -59,8 +63,7 @@ namespace DD.Managers
 
             return entity;
         }
-
-        internal void Remove(DEntity entity)
+        internal void Destroy(DEntity entity)
         {
             _ = this.activeEntities.Remove(entity);
             AddEntityToObjectPool(entity);
@@ -78,7 +81,6 @@ namespace DD.Managers
 
             value.Add(entity);
         }
-
         private DEntity GetEntityFromObjectPool(Type entityType)
         {
             if (!this.entityPool.TryGetValue(entityType, out DObjectPool value))
