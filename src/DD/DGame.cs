@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System.Reflection;
-using System.Text;
 
 namespace DD
 {
@@ -141,7 +140,7 @@ namespace DD
 
             this.GraphicsDevice.SetRenderTarget(this._graphicsManager.ScreenRenderTarget);
             this.GraphicsDevice.Clear(Color.Black);
-            this._sb.Begin();
+            this._sb.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, null);
             this._sb.Draw(this._graphicsManager.HUDRenderTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, scaleFactor, SpriteEffects.None, 0f);
             this._sb.Draw(this._graphicsManager.ViewRenderTarget, new Vector2(0, DScreenConstants.HUD_HEIGHT), null, Color.White, 0f, Vector2.Zero, scaleFactor, SpriteEffects.None, 0f);
             this._sb.Draw(this._graphicsManager.UIRenderTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, scaleFactor, SpriteEffects.None, 0f);
