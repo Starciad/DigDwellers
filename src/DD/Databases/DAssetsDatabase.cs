@@ -32,11 +32,13 @@ namespace DD.Databases
         #region LOAD
         private void LoadTextures()
         {
-            string char_path = Path.Combine(DDirectoryConstants.GRAPHICS_DIRECTORY, "characters");
-            string blocks_path = Path.Combine(DDirectoryConstants.GRAPHICS_DIRECTORY, "blocks");
+            string char_path = Path.Combine(DDirectoryConstants.GRAPHICS_DIRECTORY, DDirectoryConstants.CHARACTERS_DIRECTORY);
+            string blocks_path = Path.Combine(DDirectoryConstants.GRAPHICS_DIRECTORY, DDirectoryConstants.BLOCKS_DIRECTORY);
+            string bgos_path = Path.Combine(DDirectoryConstants.GRAPHICS_DIRECTORY, DDirectoryConstants.BGOS_DIRECTORY);
 
             Loader(DAssetsConstants.TEXTURES_CHARACTERS_LENGTH, "char_", char_path);
             Loader(DAssetsConstants.TEXTURES_BLOCKS_LENGTH, "block_", blocks_path);
+            Loader(DAssetsConstants.TEXTURES_BGOS_LENGTH, "bgo_", bgos_path);
 
             void Loader(int length, string prefix, string path)
             {
