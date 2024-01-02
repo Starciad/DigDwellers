@@ -36,7 +36,7 @@ namespace DD.Mapx
                 if (!isOpeningTagStarted && line.StartsWith(TAG_START_CHARACTER) && line.EndsWith(TAG_END_OPENING))
                 {
                     isOpeningTagStarted = true;
-                    currentTag = line[1..^6];
+                    currentTag = line[1..^TAG_END_OPENING.Length];
                     numericValues.Clear();
                 }
                 // If the line starts with the character +, add all respective values to the list.
