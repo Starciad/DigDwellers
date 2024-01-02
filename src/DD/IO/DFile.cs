@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 
+using DD.Constants;
+
 namespace DD.IO
 {
     /// <summary>
@@ -15,7 +17,7 @@ namespace DD.IO
         /// <returns>The full path of the created log file.</returns>
         public static string WriteException(Exception exception)
         {
-            string logDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+            string logDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DDirectoryConstants.LOGS_DIRECTORY);
             _ = Directory.CreateDirectory(logDirectory);
             string logFileName = $"DD_Log_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.txt";
             string logFilePath = Path.Combine(logDirectory, logFileName);

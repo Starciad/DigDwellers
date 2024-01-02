@@ -15,8 +15,8 @@
 	<PropertyGroup>
 		<AssemblyName>DigDwellers</AssemblyName>
 		<RootNamespace>DD</RootNamespace>
-		<ApplicationManifest>Assets\app.manifest</ApplicationManifest>
-		<ApplicationIcon>Assets\icon.ico</ApplicationIcon>
+		<ApplicationManifest>assets\app.manifest</ApplicationManifest>
+		<ApplicationIcon>assets\icon.ico</ApplicationIcon>
 	</PropertyGroup>
 	<ItemGroup>
 		<Compile Remove="Collection\**" />
@@ -33,7 +33,7 @@
 	<!-- FILES (RESOURCE) -->
 	<ItemGroup>
 		<!-- FOLDERS -->
-		<Folder Include="Assets\world\chunks\" />
+		<Folder Include="assets\world\chunks\" />
 
 		<!-- EMBED -->
 		<EmbeddedResource Include="assets\icon.ico">
