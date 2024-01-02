@@ -24,13 +24,13 @@ namespace DD.Managers
                 throw new DInvalidComponentTypeException($"The type '{componentType.Name}' is not a valid {nameof(DComponent)}.");
             }
 
-            if (componentsPool.TryGetValue(componentType, out DObjectPool pool))
+            if (this.componentsPool.TryGetValue(componentType, out DObjectPool pool))
             {
                 return (DComponent)pool.Get();
             }
             else
             {
-                componentsPool.Add(componentType, new());
+                this.componentsPool.Add(componentType, new());
                 return (DComponent)Activator.CreateInstance(componentType);
             }
         }
@@ -39,10 +39,10 @@ namespace DD.Managers
         {
             Type componentType = component.GetType();
 
-            if (!componentsPool.TryGetValue(componentType, out DObjectPool pool))
+            if (!this.componentsPool.TryGetValue(componentType, out DObjectPool pool))
             {
                 pool = new();
-                componentsPool.Add(componentType, pool);
+                this.componentsPool.Add(componentType, pool);
             }
 
             pool.Add(component);

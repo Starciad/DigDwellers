@@ -27,7 +27,7 @@ namespace DD
         internal DGame()
         {
             // Initialize the game's graphics.
-            _graphicsManager = new(new(this)
+            this._graphicsManager = new(new(this)
             {
                 IsFullScreen = false,
                 PreferredBackBufferWidth = DScreenConstants.SCREEN_WIDTH,
@@ -94,27 +94,27 @@ namespace DD
         {
             #region RENDERING (ELEMENTS)
             // UI
-            GraphicsDevice.SetRenderTarget(this._graphicsManager.UIRenderTarget);
-            GraphicsDevice.Clear(Color.Black);
+            this.GraphicsDevice.SetRenderTarget(this._graphicsManager.UIRenderTarget);
+            this.GraphicsDevice.Clear(Color.Black);
             this._sb.Begin();
             this._sb.End();
 
             // HUD
-            GraphicsDevice.SetRenderTarget(this._graphicsManager.HUDRenderTarget);
-            GraphicsDevice.Clear(Color.Black);
+            this.GraphicsDevice.SetRenderTarget(this._graphicsManager.HUDRenderTarget);
+            this.GraphicsDevice.Clear(Color.Black);
             this._sb.Begin();
             this._sb.End();
 
             // VIEW
-            GraphicsDevice.SetRenderTarget(this._graphicsManager.ViewRenderTarget);
-            GraphicsDevice.Clear(Color.Black);
+            this.GraphicsDevice.SetRenderTarget(this._graphicsManager.ViewRenderTarget);
+            this.GraphicsDevice.Clear(Color.Black);
             this._sb.Begin();
             this._sb.End();
             #endregion
 
             #region RENDERING (SCREEN)
-            GraphicsDevice.SetRenderTarget(this._graphicsManager.ScreenRenderTarget);
-            GraphicsDevice.Clear(Color.Black);
+            this.GraphicsDevice.SetRenderTarget(this._graphicsManager.ScreenRenderTarget);
+            this.GraphicsDevice.Clear(Color.Black);
             this._sb.Begin();
             this._sb.Draw(this._graphicsManager.HUDRenderTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
             this._sb.Draw(this._graphicsManager.ViewRenderTarget, new Vector2(0, DScreenConstants.HUD_HEIGHT + 1), null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
@@ -123,8 +123,8 @@ namespace DD
             #endregion
 
             #region RENDERING (FINAL)
-            GraphicsDevice.SetRenderTarget(null);
-            GraphicsDevice.Clear(Color.Black);
+            this.GraphicsDevice.SetRenderTarget(null);
+            this.GraphicsDevice.Clear(Color.Black);
             this._sb.Begin();
             this._sb.Draw(this._graphicsManager.ScreenRenderTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
             this._sb.End();

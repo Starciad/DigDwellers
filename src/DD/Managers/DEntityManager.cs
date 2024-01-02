@@ -1,17 +1,17 @@
-﻿using DD.Entities;
+﻿using DD.Collections;
+using DD.Entities;
 using DD.Objects;
-using DD.Collections;
+
+using Microsoft.Xna.Framework;
 
 using System;
 using System.Collections.Generic;
-
-using Microsoft.Xna.Framework;
 
 namespace DD.Managers
 {
     internal sealed class DEntityManager : DGameObject
     {
-        internal DEntity[] ActiveEntities => activeEntities.ToArray();
+        internal DEntity[] ActiveEntities => this.activeEntities.ToArray();
 
         // Pool
         private readonly Dictionary<Type, DObjectPool> entityPool = [];
@@ -37,12 +37,12 @@ namespace DD.Managers
 
         internal void Reset()
         {
-            foreach (DEntity entity in ActiveEntities)
+            foreach (DEntity entity in this.ActiveEntities)
             {
                 AddEntityToObjectPool(entity);
             }
 
-            activeEntities.Clear();
+            this.activeEntities.Clear();
         }
 
         public T Create<T>() where T : DEntity
@@ -55,14 +55,14 @@ namespace DD.Managers
             DEntity entity = GetEntityFromObjectPool(type);
 
             entity.Initialize();
-            activeEntities.Add(entity);
+            this.activeEntities.Add(entity);
 
             return entity;
         }
 
         internal void Remove(DEntity entity)
         {
-            _ = activeEntities.Remove(entity);
+            _ = this.activeEntities.Remove(entity);
             AddEntityToObjectPool(entity);
         }
 
@@ -70,10 +70,10 @@ namespace DD.Managers
         {
             Type entityType = entity.GetType();
 
-            if (!entityPool.TryGetValue(entityType, out DObjectPool value))
+            if (!this.entityPool.TryGetValue(entityType, out DObjectPool value))
             {
                 value = new();
-                entityPool.Add(entityType, value);
+                this.entityPool.Add(entityType, value);
             }
 
             value.Add(entity);
@@ -81,10 +81,10 @@ namespace DD.Managers
 
         private DEntity GetEntityFromObjectPool(Type entityType)
         {
-            if (!entityPool.TryGetValue(entityType, out DObjectPool value))
+            if (!this.entityPool.TryGetValue(entityType, out DObjectPool value))
             {
                 value = new();
-                entityPool.Add(entityType, value);
+                this.entityPool.Add(entityType, value);
             }
 
             DEntity entity = (DEntity)value.Get();
