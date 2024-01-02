@@ -33,23 +33,29 @@
 	<!-- FILES (RESOURCE) -->
 	<ItemGroup>
 		<!-- FOLDERS -->
-		<Folder Include="assets\world\chunks\" />
 
 		<!-- EMBED -->
 		<EmbeddedResource Include="assets\icon.ico">
 			<LogicalName>icon.ico</LogicalName>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
+		<Folder Include="assets\mapx\chunks\sub5\" />
+		<Folder Include="assets\mapx\chunks\sub4\" />
+		<Folder Include="assets\mapx\chunks\sub3\" />
+		<Folder Include="assets\mapx\chunks\sub2\" />
+		<Folder Include="assets\mapx\chunks\sub1\" />
+		<Folder Include="assets\mapx\chunks\sub0\" />
+		<Folder Include="Databases\" />
 		<!--<EmbeddedResource Include="assets\icon.bmp">
 			<LogicalName>icon.bmp</LogicalName>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>-->
 
 		<!-- WORLD -->
-		<None Update="assets\world\areas\legendary_cave.mapx">
+		<None Update="assets\mapx\specials\legendary_cave.mapx">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="assets\world\areas\home.mapx">
+		<None Update="assets\mapx\specials\home.mapx">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>

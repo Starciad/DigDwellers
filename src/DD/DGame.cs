@@ -21,6 +21,7 @@ namespace DD
         private readonly DComponentManager _componentManager;
         private readonly DEntityManager _entityManager;
         private readonly DAssetsManager _assetsManager;
+        private readonly DSceneManager _sceneManager;
 
         // ================================= //
 
@@ -55,6 +56,7 @@ namespace DD
             this._entityManager = new();
             this._componentManager = new();
             this._assetsManager = new(this.Content);
+            this._sceneManager = new();
         }
 
         protected override void Initialize()
@@ -63,11 +65,13 @@ namespace DD
             this._entityManager.SetGameInstance(this);
             this._componentManager.SetGameInstance(this);
             this._assetsManager.SetGameInstance(this);
+            this._sceneManager.SetGameInstance(this);
 
             this._graphicsManager.Initialize();
             this._entityManager.Initialize();
             this._componentManager.Initialize();
             this._assetsManager.Initialize();
+            this._sceneManager.Initialize();
 
             base.Initialize();
         }

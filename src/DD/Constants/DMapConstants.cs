@@ -2,10 +2,10 @@
 {
     internal static class DMapConstants
     {
-        internal const int WORLD_WIDTH = 5;
-        internal const int WORLD_HEIGHT = 6;
+        internal const int WORLD_SIZE_WIDTH = 5;
+        internal const int WORLD_SIZE_HEIGHT = 6;
 
-        internal const int CHUNK_WIDTH = 16;
-        internal const int CHUNK_HEIGHT = 12;
+        internal const int TILEMAP_SIZE_WIDTH = 16;
+        internal const int TILEMAP_SIZE_HEIGHT = 12;
     }
 }

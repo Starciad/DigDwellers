@@ -1,12 +1,10 @@
 [ BLOCKS IDs ]
 000 = Empty
 001 = Dirt
-002 = Grass
-003 = Plataform
-004 = Rope
 
 [BGOS]
-000 = Name
+000 = Empty
+001 = Van
 
 [NPCS]
 000 = Name

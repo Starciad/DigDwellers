@@ -1,9 +1,11 @@
 ﻿using DD.Constants;
+using DD.Mapx;
 using DD.Objects;
 
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -14,8 +16,10 @@ namespace DD.Managers
         private readonly ContentManager _cm;
 
         private readonly Dictionary<string, Texture2D> textures = [];
+        private readonly Dictionary<string, DMapxData> mapxFiles = [];
 
         private const string GRAPHICS_DIRECTORY = "graphics";
+        private const string MAPX_DIRECTORY = "mapx";
 
         internal DAssetsManager(ContentManager contentManager)
         {
@@ -25,6 +29,7 @@ namespace DD.Managers
         protected override void OnAwake()
         {
             LoadTextures();
+            LoadMapxFiles();
         }
 
         private void LoadTextures()
@@ -50,6 +55,18 @@ namespace DD.Managers
                     this.textures.Add(targetName, this._cm.Load<Texture2D>(targetPath));
                 }
             }
+        }
+        private void LoadMapxFiles()
+        {
+            // PATHS
+            string mapx_path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, MAPX_DIRECTORY);
+            string specials_path = Path.Combine(mapx_path, "specials");
+
+            // SPECIALS (LOAD)
+            this.mapxFiles.Add("home", DMapxSerializer.Deserialize(Path.Combine(specials_path, "home.mapx")));
+
+            // CHUNKS (LOAD)
+            // [ ... ]
         }
     }
 }
