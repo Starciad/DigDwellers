@@ -8,14 +8,14 @@
 
         // RENDER TARGETS
         internal const int VIEW_WIDTH = DEFAULT_WIDTH;
-        internal const int VIEW_HEIGHT = DEFAULT_HEIGHT - HUD_HEIGHT / 2;
+        internal const int VIEW_HEIGHT = DEFAULT_HEIGHT - HUD_HEIGHT;
 
         internal const int HUD_WIDTH = DEFAULT_WIDTH;
-        internal const int HUD_HEIGHT = 80;
+        internal const int HUD_HEIGHT = 40;
 
         // DEFAULT
         internal const int DEFAULT_WIDTH = 256;
-        internal const int DEFAULT_HEIGHT = 240;
+        internal const int DEFAULT_HEIGHT = 232;
 
         // SCALE
         internal const float SCALE_FACTOR = 2f;

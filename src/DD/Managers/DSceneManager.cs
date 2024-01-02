@@ -48,7 +48,7 @@ namespace DD.Managers
             // Blocks.
             foreach ((DBlock, Vector2) blockInfo in activeBlocks)
             {
-                spriteBatch.Draw(blockInfo.Item1.Texture, blockInfo.Item2, null, Color.White, 0f, blockInfo.Item1.TextureOrigin, Vector2.One, SpriteEffects.None, 0f);
+                spriteBatch.Draw(blockInfo.Item1.Texture, blockInfo.Item2, null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
             }
 
             // [...]
