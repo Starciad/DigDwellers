@@ -18,9 +18,6 @@ namespace DD.Databases
         private readonly Dictionary<string, Texture2D> textures = [];
         private readonly Dictionary<string, DMapxData> mapxFiles = [];
 
-        private const string GRAPHICS_DIRECTORY = "graphics";
-        private const string MAPX_DIRECTORY = "mapx";
-
         internal DAssetsDatabase(ContentManager contentManager)
         {
             this._cm = contentManager;
@@ -34,8 +31,8 @@ namespace DD.Databases
 
         private void LoadTextures()
         {
-            string char_path = Path.Combine(GRAPHICS_DIRECTORY, "characters");
-            string blocks_path = Path.Combine(GRAPHICS_DIRECTORY, "blocks");
+            string char_path = Path.Combine(DAssetsConstants.GRAPHICS_DIRECTORY, "characters");
+            string blocks_path = Path.Combine(DAssetsConstants.GRAPHICS_DIRECTORY, "blocks");
 
             Loader(DAssetsConstants.TEXTURES_CHARACTERS_LENGTH, "char_", char_path);
             Loader(DAssetsConstants.TEXTURES_BLOCKS_LENGTH, "block_", blocks_path);
@@ -59,7 +56,7 @@ namespace DD.Databases
         private void LoadMapxFiles()
         {
             // PATHS
-            string mapx_path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, MAPX_DIRECTORY);
+            string mapx_path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DAssetsConstants.MAPX_DIRECTORY);
             string specials_path = Path.Combine(mapx_path, "specials");
 
             // SPECIALS (LOAD)
