@@ -4,9 +4,9 @@ namespace DD.Components.Common
 {
     internal sealed class DTransformComponent : DComponent
     {
-        internal Vector2 Position { get; set; }
-        internal Vector2 Scale { get; set; }
-        internal float Rotation { get; set; }
+        internal Vector2 Position { get; set; } = Vector2.Zero;
+        internal Vector2 Scale { get; set; } = Vector2.One;
+        internal float Rotation { get; set; } = 0f;
 
         public override void Reset()
         {

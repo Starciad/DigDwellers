@@ -58,12 +58,7 @@ namespace DD.Managers
                     continue;
                 }
 
-                if (!entity.ComponentContainer.TryGetComponent(out DDrawComponent drawComponent))
-                {
-                    continue;
-                }
-
-                drawComponent.Draw(spriteBatch, gameTime);
+                entity.Draw(spriteBatch, gameTime);
             }
         }
 

@@ -1,27 +1,30 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DD.Extensions;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace DD.Components.Common
 {
     internal sealed class DDrawComponent : DComponent
     {
-        internal Texture2D Texture { get; private set; }
-        internal Rectangle? SourceRectangle { get; private set; }
-        internal Vector2 Position { get; private set; }
-        internal Vector2 Scale { get; private set; }
-        internal float Rotation { get; private set; }
-        internal Color Color { get; private set; }
-        internal Vector2 Origin { get; private set; }
-        internal SpriteEffects SpriteEffects { get; private set; }
-        internal float LayerDepth { get; private set; }
+        internal Texture2D Texture { get; private set; } = null;
+        internal Rectangle? SourceRectangle { get; private set; } = null;
+        internal Vector2 Position { get; private set; } = Vector2.Zero;
+        internal Vector2 Scale { get; private set; } = Vector2.One;
+        internal float Rotation { get; private set; } = 0f;
+        internal Color Color { get; private set; } = Color.White;
+        internal Vector2 Origin { get; private set; } = Vector2.Zero;
+        internal SpriteEffects SpriteEffects { get; private set; } = SpriteEffects.None;
+        internal float LayerDepth { get; private set; } = 0f;
 
         private DTransformComponent _transformComponent;
 
         public override void Reset()
         {
             base.Reset();
+
             this.Texture = null;
-            this.SourceRectangle = null;
+            this.SourceRectangle = Rectangle.Empty;
             this.Position = Vector2.Zero;
             this.Scale = Vector2.Zero;
             this.Color = Color.White;
@@ -61,6 +64,7 @@ namespace DD.Components.Common
         internal void SetTexture(Texture2D value)
         {
             this.Texture = value;
+            this.Origin = this.Texture.GetCenterOrigin();
         }
         internal void SetSourceRectangle(Rectangle? value)
         {
@@ -81,10 +85,6 @@ namespace DD.Components.Common
         internal void SetColor(Color value)
         {
             this.Color = value;
-        }
-        internal void SetOrigin(Vector2 value)
-        {
-            this.Origin = value;
         }
         internal void SetSpriteEffects(SpriteEffects value)
         {

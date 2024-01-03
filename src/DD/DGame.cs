@@ -110,7 +110,7 @@ namespace DD
 
         protected override void BeginRun()
         {
-            this._entityManager.Instantiate<DPlayer>(new(DScreenConstants.DEFAULT_WIDTH / 2, DScreenConstants.DEFAULT_HEIGHT / 2));
+            this._entityManager.Instantiate<DPlayer>(new(DScreenConstants.VIEW_WIDTH / 2, DScreenConstants.VIEW_HEIGHT / 2));
 
             this._sceneManager.LoadScene(this._assetsDatabase.GetMapxData("home"));
             base.BeginRun();
@@ -138,7 +138,7 @@ namespace DD
             this._sb.End();
 
             // SCENE
-            this.GraphicsDevice.SetRenderTarget(this._graphicsManager.SceneRenderTarget);
+            this.GraphicsDevice.SetRenderTarget(this._graphicsManager.ViewRenderTarget);
             this.GraphicsDevice.Clear(Color.Cyan);
             this._sb.Begin();
             this._tileMapManager.Draw(this._sb, gameTime);
@@ -151,7 +151,7 @@ namespace DD
             this.GraphicsDevice.Clear(Color.Black);
             this._sb.Begin();
             this._sb.Draw(this._graphicsManager.HUDRenderTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
-            this._sb.Draw(this._graphicsManager.SceneRenderTarget, new Vector2(0, DScreenConstants.HUD_HEIGHT), null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
+            this._sb.Draw(this._graphicsManager.ViewRenderTarget, new Vector2(0, DScreenConstants.HUD_HEIGHT), null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
             this._sb.Draw(this._graphicsManager.UIRenderTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
             this._sb.End();
             #endregion

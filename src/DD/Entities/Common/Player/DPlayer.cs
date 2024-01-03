@@ -1,5 +1,7 @@
 ﻿using DD.Components.Common;
 
+using Microsoft.Xna.Framework;
+
 namespace DD.Entities.Common.Player
 {
     internal sealed class DPlayer : DEntity
