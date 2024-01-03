@@ -18,10 +18,15 @@ namespace DD.Objects
         {
             OnDraw(spriteBatch, gameTime);
         }
+        internal void Destroy()
+        {
+            OnDestroy();
+        }
 
-        protected virtual void OnAwake() { }
-        protected virtual void OnStart() { }
-        protected virtual void OnUpdate(GameTime gameTime) { }
-        protected virtual void OnDraw(SpriteBatch spriteBatch, GameTime gameTime) { }
+        protected virtual void OnAwake() { return; }
+        protected virtual void OnStart() { return; }
+        protected virtual void OnUpdate(GameTime gameTime) { return; }
+        protected virtual void OnDraw(SpriteBatch spriteBatch, GameTime gameTime) { return; }
+        protected virtual void OnDestroy() { return; }
     }
 }
