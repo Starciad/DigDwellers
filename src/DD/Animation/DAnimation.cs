@@ -42,18 +42,21 @@ namespace DD.Animation
         /// </summary>
         internal DAnimationMode Mode => this.mode;
 
+        internal bool IsPaused => this.pause;
+
         // ======================================= //
 
         private Texture2D texture;
         private Rectangle sourceFrame;
 
         private DAnimationMode mode;
+        private bool pause;
 
-        private float animationDelay = 1f;
-        private float animationCurrentDelay = 0f;
+        private float frameDuration = 1f;
+        private float currentFrameDuration = 0f;
 
-        private readonly List<Rectangle> animationFrames = [];
-        private int animationCurrentFrame = 0;
+        private readonly List<Rectangle> frames = [];
+        private int currentFrameIndex = 0;
 
         // ======================================= //
 
@@ -62,9 +65,9 @@ namespace DD.Animation
         /// </summary>
         internal void Initialize()
         {
-            if (this.animationFrames.Count > 0)
+            if (this.frames.Count > 0)
             {
-                this.sourceFrame = this.animationFrames[0];
+                this.sourceFrame = this.frames[0];
             }
         }
 
@@ -73,26 +76,31 @@ namespace DD.Animation
         /// </summary>
         internal void Update()
         {
+            if (this.pause)
+            {
+                return;
+            }
+
             if (this.mode == DAnimationMode.Disable)
             {
                 return;
             }
 
-            if (this.animationCurrentDelay < this.animationDelay)
+            if (this.currentFrameDuration < this.frameDuration)
             {
-                this.animationCurrentDelay += 0.1f;
+                this.currentFrameDuration += 0.1f;
             }
             else
             {
-                this.animationCurrentDelay = 0;
+                this.currentFrameDuration = 0;
 
-                if (this.animationCurrentFrame < this.animationFrames.Count - 1)
+                if (this.currentFrameIndex < this.frames.Count - 1)
                 {
-                    this.animationCurrentFrame++;
+                    this.currentFrameIndex++;
                 }
                 else
                 {
-                    this.animationCurrentFrame = 0;
+                    this.currentFrameIndex = 0;
 
                     if (this.mode == DAnimationMode.Once)
                     {
@@ -102,7 +110,7 @@ namespace DD.Animation
                 }
             }
 
-            this.sourceFrame = this.animationFrames[this.animationCurrentFrame];
+            this.sourceFrame = this.frames[this.currentFrameIndex];
         }
 
         /// <summary>
@@ -112,10 +120,10 @@ namespace DD.Animation
         {
             this.mode = DAnimationMode.Disable;
 
-            this.animationDelay = 1f;
-            this.animationCurrentDelay = 0f;
+            this.frameDuration = 1f;
+            this.currentFrameDuration = 0f;
 
-            this.animationCurrentFrame = 0;
+            this.currentFrameIndex = 0;
         }
 
         /// <summary>
@@ -123,7 +131,7 @@ namespace DD.Animation
         /// </summary>
         internal void ClearFrames()
         {
-            this.animationFrames.Clear();
+            this.frames.Clear();
         }
 
         /// <summary>
@@ -148,18 +156,18 @@ namespace DD.Animation
         /// Sets the duration of each sourceFrame in the animation.
         /// </summary>
         /// <param name="delay">The delay (in seconds) between frames.</param>
-        internal void SetDuration(float delay)
+        internal void SetDuration(float duration)
         {
-            this.animationDelay = delay;
+            this.frameDuration = duration;
         }
 
         /// <summary>
         /// Sets the current sourceFrame to be displayed in the animation.
         /// </summary>
-        /// <param name="frame">The index of the sourceFrame to be set as the current sourceFrame.</param>
-        internal void SetCurrentSourceFrame(int frame)
+        /// <param name="index">The index of the sourceFrame to be set as the current sourceFrame.</param>
+        internal void SetFrameIndex(int index)
         {
-            this.animationCurrentFrame = Math.Clamp(frame, 0, this.animationFrames.Count - 1);
+            this.currentFrameIndex = Math.Clamp(index, 0, this.frames.Count - 1);
         }
 
         /// <summary>
@@ -168,7 +176,17 @@ namespace DD.Animation
         /// <param name="sourceFrame">The rectangle defining the sourceFrame within the texture.</param>
         internal void AddFrame(Rectangle sourceFrame)
         {
-            this.animationFrames.Add(sourceFrame);
+            this.frames.Add(sourceFrame);
+        }
+
+        internal void Pause()
+        {
+            this.pause = true;
+        }
+
+        internal void Resume()
+        {
+            this.pause = false;
         }
 
         /// <summary>
