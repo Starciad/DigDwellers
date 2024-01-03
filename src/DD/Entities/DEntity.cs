@@ -37,6 +37,11 @@ namespace DD.Entities
             this.componentContainer.Draw(spriteBatch, gameTime);
         }
 
+        protected override void OnDestroy()
+        {
+            this.componentContainer.Destroy();
+        }
+
         public virtual void Reset()
         {
             this.componentContainer.Reset();

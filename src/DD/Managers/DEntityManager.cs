@@ -20,8 +20,8 @@ namespace DD.Managers
         private readonly Dictionary<Type, DObjectPool> entityPool = [];
         private readonly List<DEntity> activeEntities = [];
 
-        private DEntity[] activeEntitiesArray;
-        private int activeEntitiesLength;
+        private DEntity[] cacheActiveEntities;
+        private int cacheActiveEntitiesLength;
 
         internal void Load(DMapxData data)
         {
@@ -34,12 +34,12 @@ namespace DD.Managers
 
         protected override void OnUpdate(GameTime gameTime)
         {
-            this.activeEntitiesArray = [.. this.activeEntities];
-            this.activeEntitiesLength = activeEntitiesArray.Length;
+            this.cacheActiveEntities = [.. this.activeEntities];
+            this.cacheActiveEntitiesLength = this.cacheActiveEntities.Length;
 
-            for (int i = 0; i < this.activeEntitiesLength; i++)
+            for (int i = 0; i < this.cacheActiveEntitiesLength; i++)
             {
-                DEntity entity = this.activeEntitiesArray[i];
+                DEntity entity = this.cacheActiveEntities[i];
                 if (entity == null)
                 {
                     continue;
@@ -50,9 +50,9 @@ namespace DD.Managers
         }
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            for (int i = 0; i < this.activeEntitiesLength; i++)
+            for (int i = 0; i < this.cacheActiveEntitiesLength; i++)
             {
-                DEntity entity = this.activeEntitiesArray[i];
+                DEntity entity = this.cacheActiveEntities[i];
                 if (entity == null)
                 {
                     continue;
@@ -124,8 +124,10 @@ namespace DD.Managers
             this.activeEntities.Add(entity);
             return entity;
         }
+
         internal void Destroy(DEntity entity)
         {
+            entity.Destroy();
             _ = this.activeEntities.Remove(entity);
             AddEntityToObjectPool(entity);
         }

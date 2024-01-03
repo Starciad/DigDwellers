@@ -4,6 +4,7 @@ using DD.Exceptions.Components;
 using DD.Objects;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,59 @@ namespace DD.Components
 
         private readonly Dictionary<Type, DComponent> _components = [];
         private DEntity _entity;
+
+        private DComponent[] cacheComponents;
+        private int cacheLength;
+
+        protected override void OnAwake()
+        {
+            this.cacheComponents = [.. this._components.Values];
+            this.cacheLength = this.cacheComponents.Length;
+
+            for (int i = 0; i < cacheLength; i++)
+            {
+                this.cacheComponents[i].Initialize();
+            }
+        }
+        protected override void OnUpdate(GameTime gameTime)
+        {
+            this.cacheComponents = [.. this._components.Values];
+            this.cacheLength = this.cacheComponents.Length;
+
+            for (int i = 0; i < cacheLength; i++)
+            {
+                DComponent component = this.cacheComponents[i];
+
+                if (component == null)
+                {
+                    continue;
+                }
+
+                component.Update(gameTime);
+            }
+        }
+        protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            for (int i = 0; i < cacheLength; i++)
+            {
+                DComponent component = this.cacheComponents[i];
+
+                if (component == null)
+                {
+                    continue;
+                }
+
+                component.Draw(spriteBatch, gameTime);
+            }
+        }
+        protected override void OnDestroy()
+        {
+            RemoveAllComponents();
+        }
+        public void Reset()
+        {
+            RemoveAllComponents();
+        }
 
         internal void SetEntityInstance(DEntity entity)
         {
@@ -114,26 +168,6 @@ namespace DD.Components
             {
                 RemoveComponent(this._components.First().Key);
             }
-        }
-
-        protected override void OnAwake()
-        {
-            foreach (DComponent component in this._components.Values)
-            {
-                component.Initialize();
-            }
-        }
-        protected override void OnUpdate(GameTime gameTime)
-        {
-            foreach (DComponent component in this._components.Values)
-            {
-                component.Update(gameTime);
-            }
-        }
-
-        public void Reset()
-        {
-            RemoveAllComponents();
         }
     }
 }
