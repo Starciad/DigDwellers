@@ -1,12 +1,18 @@
-﻿using DD.Components.Common;
+﻿using DD.Animation;
+using DD.Animation.Enums;
+using DD.Components.Common;
+using DD.Constants;
+using DD.Utilities;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace DD.Entities.Common.Player
 {
-    internal sealed class DPlayer : DEntity
+    internal sealed partial class DPlayer : DEntity
     {
         private DDrawComponent _drawComponent;
+        private DAnimatorComponent _animatorComponent;
 
         protected override void OnAwake()
         {
@@ -14,8 +20,12 @@ namespace DD.Entities.Common.Player
 
             this.Name = "Player";
 
+            // Add
             this._drawComponent = this.ComponentContainer.AddComponent<DDrawComponent>();
-            this._drawComponent.SetTexture(this.Game.AssetsDatabase.GetTexture("char_1"));
+            this._animatorComponent = this.ComponentContainer.AddComponent<DAnimatorComponent>();
+
+            // Settings
+            OnAwake_Animation();
         }
     }
 }
