@@ -1,4 +1,4 @@
-﻿namespace DD.Enums
+﻿namespace DD.Map.Enums
 {
     internal enum DBlockType : sbyte
     {

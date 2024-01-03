@@ -1,4 +1,4 @@
-﻿using DD.Enums;
+﻿using DD.Map.Enums;
 
 using Microsoft.Xna.Framework.Graphics;
 
