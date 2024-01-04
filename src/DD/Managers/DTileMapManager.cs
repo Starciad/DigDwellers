@@ -21,7 +21,7 @@ namespace DD.Managers
         internal int Height => this.tilemap.Height;
 
         // TileMap
-        private readonly DTileMap tilemap;
+        private DTileMap tilemap;
 
         // Database
         private readonly DMapElementsDatabase _mapElementsDatabase;
@@ -32,13 +32,18 @@ namespace DD.Managers
 
         internal DTileMapManager(DMapElementsDatabase mapElementsDatabase)
         {
-            this.tilemap = new(DMapConstants.TILEMAP_SIZE_WIDTH, DMapConstants.TILEMAP_SIZE_HEIGHT);
             this._mapElementsDatabase = mapElementsDatabase;
         }
 
         // Utilities
+        internal void Load(DTileMap tilemap)
+        {
+            this.tilemap = tilemap;
+        }
         internal void Load(DMapxData data)
         {
+            this.tilemap = new(DMapConstants.TILEMAP_SIZE_WIDTH, DMapConstants.TILEMAP_SIZE_HEIGHT);
+
             // LOAD BLOCKS
             if (data.TryGetValue(DMapxConstants.BLOCKS, out sbyte[,] blocks_value))
             {

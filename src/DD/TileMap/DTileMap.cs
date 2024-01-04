@@ -20,6 +20,17 @@ namespace DD.TileMap
             this.tiles = new DTile[width, height];
         }
 
+        internal void Fill(DBlockType blockType)
+        {
+            for (int y = 0; y < this.height; y++)
+            {
+                for (int x = 0; x < this.width; x++)
+                {
+                    SetBlockType(blockType, x, y);
+                }
+            }
+        }
+
         internal bool IsEmpty(int x, int y)
         {
             return this.tiles[x, y].IsEmpty;

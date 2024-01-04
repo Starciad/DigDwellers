@@ -24,12 +24,13 @@ namespace DD
 
         private readonly Assembly _assembly;
         private SpriteBatch _sb;
+
         private readonly DGraphicsManager _graphicsManager;
         private readonly DComponentManager _componentManager;
         private readonly DEntityManager _entityManager;
         private readonly DTileMapManager _tileMapManager;
-        private readonly DSceneManager _sceneManager;
         private readonly DInputManager _inputManager;
+        private readonly DMapManager _mapManager;
 
         private readonly DAssetsDatabase _assetsDatabase;
         private readonly DMapElementsDatabase _mapElementsDatabase;
@@ -72,9 +73,7 @@ namespace DD
             this._componentManager = new();
             this._tileMapManager = new(this._mapElementsDatabase);
             this._inputManager = new();
-
-            // Scene
-            this._sceneManager = new(this._entityManager, this._tileMapManager);
+            this._mapManager = new();
         }
 
         protected override void Initialize()
@@ -85,16 +84,16 @@ namespace DD
             this._entityManager.SetGameInstance(this);
             this._componentManager.SetGameInstance(this);
             this._tileMapManager.SetGameInstance(this);
-            this._sceneManager.SetGameInstance(this);
             this._inputManager.SetGameInstance(this);
+            this._mapManager.SetGameInstance(this);
 
             // Initialize
             this._graphicsManager.Initialize();
             this._entityManager.Initialize();
             this._componentManager.Initialize();
             this._tileMapManager.Initialize();
-            this._sceneManager.Initialize();
             this._inputManager.Initialize();
+            this._mapManager.Initialize();
             #endregion
 
             #region Database
@@ -120,7 +119,9 @@ namespace DD
         {
             this._entityManager.Instantiate<DPlayer>(new(DScreenConstants.VIEW_WIDTH / 2, DScreenConstants.VIEW_HEIGHT / 2));
 
-            this._sceneManager.LoadScene(this._assetsDatabase.GetMapxData("home"));
+            // this._sceneManager.LoadScene(this._assetsDatabase.GetMapxData("home"));
+            this._tileMapManager.Load(this._mapManager.GetChunk(0, 0));
+
             base.BeginRun();
         }
 
