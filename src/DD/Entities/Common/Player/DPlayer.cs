@@ -24,6 +24,7 @@ namespace DD.Entities.Common.Player
 
             // Adding
             _ = this.ComponentContainer.AddComponent<DDrawComponent>();
+            _ = this.ComponentContainer.AddComponent<DControllerComponent>();
             this._physicsComponent = this.ComponentContainer.AddComponent<DPhysicsComponent>();
             this._tileCollisionComponent = this.ComponentContainer.AddComponent<DTileCollisionComponent>();
             this._animatorComponent = this.ComponentContainer.AddComponent<DAnimatorComponent>();

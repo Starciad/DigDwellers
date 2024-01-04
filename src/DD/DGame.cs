@@ -15,6 +15,8 @@ namespace DD
         public DComponentManager ComponentManager => this._componentManager;
         public DEntityManager EntityManager => this._entityManager;
         public DTileMapManager TileMapManager => this._tileMapManager;
+        public DInputManager InputManager => this._inputManager;
+
         public DAssetsDatabase AssetsDatabase => this._assetsDatabase;
 
         // ================================= //
@@ -26,6 +28,7 @@ namespace DD
         private readonly DEntityManager _entityManager;
         private readonly DTileMapManager _tileMapManager;
         private readonly DSceneManager _sceneManager;
+        private readonly DInputManager _inputManager;
 
         private readonly DAssetsDatabase _assetsDatabase;
         private readonly DMapElementsDatabase _mapElementsDatabase;
@@ -67,6 +70,7 @@ namespace DD
             this._entityManager = new();
             this._componentManager = new();
             this._tileMapManager = new(this._mapElementsDatabase);
+            this._inputManager = new();
 
             // Scene
             this._sceneManager = new(this._entityManager, this._tileMapManager);
@@ -81,6 +85,7 @@ namespace DD
             this._componentManager.SetGameInstance(this);
             this._tileMapManager.SetGameInstance(this);
             this._sceneManager.SetGameInstance(this);
+            this._inputManager.SetGameInstance(this);
 
             // Initialize
             this._graphicsManager.Initialize();
@@ -88,6 +93,7 @@ namespace DD
             this._componentManager.Initialize();
             this._tileMapManager.Initialize();
             this._sceneManager.Initialize();
+            this._inputManager.Initialize();
             #endregion
 
             #region Database
@@ -119,7 +125,9 @@ namespace DD
 
         protected override void Update(GameTime gameTime)
         {
+            this._inputManager.Update(gameTime);
             this._entityManager.Update(gameTime);
+
             base.Update(gameTime);
         }
 
