@@ -17,6 +17,9 @@ namespace DD.Managers
 {
     internal sealed class DTileMapManager : DGameObject
     {
+        internal int Width => this.tilemap.Width;
+        internal int Height => this.tilemap.Height;
+
         // TileMap
         private readonly DTileMap tilemap;
 
@@ -65,7 +68,6 @@ namespace DD.Managers
             SearchActiveElements();
             DrawActiveElements(spriteBatch);
         }
-
         private void SearchActiveElements()
         {
             this.activeBlocks.Clear();
@@ -123,6 +125,39 @@ namespace DD.Managers
                 bgoInfo = activeBgosArray[i];
                 spriteBatch.Draw(bgoInfo.Item1.Texture, bgoInfo.Item2, null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
             }
+        }
+
+        // Utilities
+        internal bool IsTileEmpty(int x, int y)
+        {
+            return this.tilemap.IsEmpty(x, y);
+        }
+
+        internal void SetBlockType(DBlockType type, int x, int y)
+        {
+            this.tilemap.SetBlockType(type, x, y);
+        }
+        internal void SetBgoType(DBgoType type, int x, int y)
+        {
+            this.tilemap.SetBgoType(type, x, y);
+        }
+
+        internal DBlockType GetBlockType(Vector2 position)
+        {
+            return GetBlockType((int)position.X, (int)position.Y);
+        }
+        internal DBlockType GetBlockType(int x, int y)
+        {
+            return this.tilemap.GetBlockType(x, y);
+        }
+
+        internal DBgoType GetBgoType(Vector2 position)
+        {
+            return GetBgoType((int)position.X, (int)position.Y);
+        }
+        internal DBgoType GetBgoType(int x, int y)
+        {
+            return this.tilemap.GetBgoType(x, y);
         }
     }
 }

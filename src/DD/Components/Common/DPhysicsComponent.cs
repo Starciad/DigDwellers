@@ -8,8 +8,8 @@ namespace DD.Components.Common
     {
         internal float GravityScale { get; set; } = 1.0f;
         internal float Mass { get; set; } = 1.0f;
-        internal Vector2 TotalForce { get; private set; } = Vector2.Zero;
-        internal Vector2 Velocity { get; private set; } = Vector2.Zero;
+        internal Vector2 TotalForce { get; set; } = Vector2.Zero;
+        internal Vector2 Velocity { get; set; } = Vector2.Zero;
 
         private DTransformComponent _transform;
 

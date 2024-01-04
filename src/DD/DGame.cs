@@ -14,6 +14,7 @@ namespace DD
     {
         public DComponentManager ComponentManager => this._componentManager;
         public DEntityManager EntityManager => this._entityManager;
+        public DTileMapManager TileMapManager => this._tileMapManager;
         public DAssetsDatabase AssetsDatabase => this._assetsDatabase;
 
         // ================================= //
