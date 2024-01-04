@@ -18,11 +18,6 @@
 		<ApplicationManifest>assets\app.manifest</ApplicationManifest>
 		<ApplicationIcon>assets\icon.ico</ApplicationIcon>
 	</PropertyGroup>
-	<ItemGroup>
-		<Compile Remove="Collection\**" />
-		<EmbeddedResource Remove="Collection\**" />
-		<None Remove="Collection\**" />
-	</ItemGroup>
 
 	<!-- FILES (REMOVE) -->
 	<ItemGroup>
@@ -39,16 +34,13 @@
 			<LogicalName>icon.ico</LogicalName>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<Folder Include="assets\mapx\chunks\sub5\" />
-		<Folder Include="assets\mapx\chunks\sub4\" />
-		<Folder Include="assets\mapx\chunks\sub3\" />
-		<Folder Include="assets\mapx\chunks\sub2\" />
-		<Folder Include="assets\mapx\chunks\sub1\" />
-		<Folder Include="assets\mapx\chunks\sub0\" />
 		<!--<EmbeddedResource Include="assets\icon.bmp">
 			<LogicalName>icon.bmp</LogicalName>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>-->
+		<Compile Remove="Collection\**" />
+		<EmbeddedResource Remove="Collection\**" />
+		<None Remove="Collection\**" />
 
 		<!-- WORLD -->
 		<None Update="assets\mapx\specials\legendary_cave.mapx">

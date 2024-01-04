@@ -1,9 +1,9 @@
 ﻿using DD.Constants;
+using DD.Enums.Map;
 using DD.Objects;
 using DD.TileMap;
 
 using System;
-using DD.Enums.Map;
 
 namespace DD.Managers
 {

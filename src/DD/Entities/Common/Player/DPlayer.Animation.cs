@@ -1,10 +1,10 @@
 ﻿using DD.Animation;
 using DD.Constants;
+using DD.Enums.Animation;
 using DD.Utilities;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using DD.Enums.Animation;
 
 namespace DD.Entities.Common.Player
 {

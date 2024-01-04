@@ -23,7 +23,7 @@ namespace DD.Components.Common
 
         internal void SetRotation(float angleInRadians)
         {
-            Rotation = angleInRadians;
+            this.Rotation = angleInRadians;
         }
 
         internal void MoveRelative(Vector2 offset)

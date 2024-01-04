@@ -32,7 +32,7 @@ namespace DD.Components.Common
         {
             base.OnAwake();
 
-            this.Entity.ComponentContainer.TryGetComponent(out _drawComponent);
+            _ = this.Entity.ComponentContainer.TryGetComponent(out this._drawComponent);
         }
         protected override void OnUpdate(GameTime gameTime)
         {
@@ -58,7 +58,7 @@ namespace DD.Components.Common
         }
         internal DAnimation GetAnimation(string name)
         {
-            return animations[name];
+            return this.animations[name];
         }
         internal void RemoveAnimation(string name)
         {
@@ -72,7 +72,7 @@ namespace DD.Components.Common
                 return;
             }
 
-            if (animations.TryGetValue(name, out DAnimation animation))
+            if (this.animations.TryGetValue(name, out DAnimation animation))
             {
                 animation.Reset();
                 animation.SetMode(DAnimationMode.Forward);

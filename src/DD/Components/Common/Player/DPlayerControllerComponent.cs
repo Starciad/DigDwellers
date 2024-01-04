@@ -1,5 +1,4 @@
-﻿using DD.Constants;
-using DD.Databases;
+﻿using DD.Databases;
 using DD.Enums.Map;
 using DD.Managers;
 using DD.Map.Elements;
@@ -72,7 +71,7 @@ namespace DD.Components.Common.Player
 
         private Keys GetKeyForDirection(int directionIndex)
         {
-            return keys[directionIndex];
+            return this.keys[directionIndex];
         }
 
         private void HandleMovement(Vector2 targetPos)

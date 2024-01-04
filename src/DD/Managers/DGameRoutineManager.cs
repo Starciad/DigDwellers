@@ -24,7 +24,7 @@ namespace DD.Managers
         }
         internal void BeginRun()
         {
-            this._entityManager.Instantiate<DPlayer>(new(DScreenConstants.VIEW_WIDTH / 2, DScreenConstants.VIEW_HEIGHT / 2));
+            _ = this._entityManager.Instantiate<DPlayer>(new(DScreenConstants.VIEW_WIDTH / 2, DScreenConstants.VIEW_HEIGHT / 2));
             this._tileMapManager.Load(this._mapManager.GetChunk(0, 0));
         }
     }

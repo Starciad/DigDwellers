@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 
-using SharpDX.Direct2D1.Effects;
-
 namespace DD.Utilities
 {
     internal static class DSpriteUtilities

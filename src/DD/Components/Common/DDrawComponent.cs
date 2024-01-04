@@ -1,6 +1,4 @@
-﻿using DD.Extensions;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace DD.Components.Common
@@ -34,7 +32,7 @@ namespace DD.Components.Common
         {
             base.OnAwake();
 
-            this.Entity.ComponentContainer.TryGetComponent(out _transformComponent);
+            _ = this.Entity.ComponentContainer.TryGetComponent(out this._transformComponent);
         }
         protected override void OnUpdate(GameTime gameTime)
         {

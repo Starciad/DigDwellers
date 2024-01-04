@@ -10,22 +10,22 @@ namespace DD.Managers
         /// <summary>
         /// Current state the player's mouse is in.
         /// </summary>
-        internal MouseState Mouse => _mouseState;
+        internal MouseState Mouse => this._mouseState;
 
         /// <summary>
         /// Current state the player's keyboard is in.
         /// </summary>
-        internal KeyboardState Keyboard => _keyboardState;
+        internal KeyboardState Keyboard => this._keyboardState;
 
         /// <summary>
         /// Mouse state captured in the previous frame.
         /// </summary>
-        internal MouseState PreviousMouse => _previousMouseState;
+        internal MouseState PreviousMouse => this._previousMouseState;
 
         /// <summary>
         /// Keyboard status captured in the previous frame.
         /// </summary>
-        internal KeyboardState PreviousKeyboard => _previousKeyboardState;
+        internal KeyboardState PreviousKeyboard => this._previousKeyboardState;
 
         private MouseState _previousMouseState;
         private KeyboardState _previousKeyboardState;
@@ -37,11 +37,11 @@ namespace DD.Managers
         {
             base.OnUpdate(gameTime);
 
-            _previousMouseState = _mouseState;
-            _previousKeyboardState = _keyboardState;
+            this._previousMouseState = this._mouseState;
+            this._previousKeyboardState = this._keyboardState;
 
-            _mouseState = Microsoft.Xna.Framework.Input.Mouse.GetState();
-            _keyboardState = Microsoft.Xna.Framework.Input.Keyboard.GetState();
+            this._mouseState = Microsoft.Xna.Framework.Input.Mouse.GetState();
+            this._keyboardState = Microsoft.Xna.Framework.Input.Keyboard.GetState();
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace DD.Managers
         /// <returns>The difference in scroll wheel value.</returns>
         internal int GetDeltaScrollWheel()
         {
-            return _previousMouseState.ScrollWheelValue - _mouseState.ScrollWheelValue;
+            return this._previousMouseState.ScrollWheelValue - this._mouseState.ScrollWheelValue;
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace DD.Managers
         /// <returns>True if the key was just pressed, false otherwise.</returns>
         internal bool Started(Keys key)
         {
-            return !PreviousKeyboard.IsKeyDown(key) && Keyboard.IsKeyDown(key);
+            return !this.PreviousKeyboard.IsKeyDown(key) && this.Keyboard.IsKeyDown(key);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace DD.Managers
         /// <returns>True if the key is being held down, false otherwise.</returns>
         internal bool Performed(Keys key)
         {
-            return PreviousKeyboard.IsKeyDown(key) && Keyboard.IsKeyDown(key);
+            return this.PreviousKeyboard.IsKeyDown(key) && this.Keyboard.IsKeyDown(key);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace DD.Managers
         /// <returns>True if the key was just released, false otherwise.</returns>
         internal bool Canceled(Keys key)
         {
-            return PreviousKeyboard.IsKeyDown(key) && !Keyboard.IsKeyDown(key);
+            return this.PreviousKeyboard.IsKeyDown(key) && !this.Keyboard.IsKeyDown(key);
         }
     }
 }

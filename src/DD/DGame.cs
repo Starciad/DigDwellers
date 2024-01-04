@@ -1,6 +1,5 @@
 ﻿using DD.Constants;
 using DD.Databases;
-using DD.Entities.Common.Player;
 using DD.Managers;
 
 using Microsoft.Xna.Framework;

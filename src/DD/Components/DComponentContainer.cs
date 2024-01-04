@@ -27,7 +27,7 @@ namespace DD.Components
             this.cacheComponents = [.. this._components.Values];
             this.cacheLength = this.cacheComponents.Length;
 
-            for (int i = 0; i < cacheLength; i++)
+            for (int i = 0; i < this.cacheLength; i++)
             {
                 this.cacheComponents[i].Initialize();
             }
@@ -37,7 +37,7 @@ namespace DD.Components
             this.cacheComponents = [.. this._components.Values];
             this.cacheLength = this.cacheComponents.Length;
 
-            for (int i = 0; i < cacheLength; i++)
+            for (int i = 0; i < this.cacheLength; i++)
             {
                 DComponent component = this.cacheComponents[i];
 
@@ -51,7 +51,7 @@ namespace DD.Components
         }
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            for (int i = 0; i < cacheLength; i++)
+            for (int i = 0; i < this.cacheLength; i++)
             {
                 DComponent component = this.cacheComponents[i];
 
