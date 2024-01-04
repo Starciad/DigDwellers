@@ -43,7 +43,7 @@ namespace DD.Components.Common
             this.Velocity += acceleration * deltaTime;
 
             // Update position based on velocity
-            this._transform.Position += Velocity * deltaTime;
+            this._transform.MoveRelative(Velocity * deltaTime);
 
             // Reset total force after each physics step
             this.TotalForce = Vector2.Zero;
