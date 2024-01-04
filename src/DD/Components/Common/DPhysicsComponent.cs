@@ -6,18 +6,16 @@ namespace DD.Components.Common
 {
     internal sealed class DPhysicsComponent : DComponent
     {
-        internal float GravityScale { get; set; }
-        internal float Mass { get; set; }
-        internal Vector2 TotalForce { get; private set; }
-        internal Vector2 Velocity { get; private set; }
+        internal float GravityScale { get; set; } = 1.0f;
+        internal float Mass { get; set; } = 1.0f;
+        internal Vector2 TotalForce { get; private set; } = Vector2.Zero;
+        internal Vector2 Velocity { get; private set; } = Vector2.Zero;
 
         private DTransformComponent _transform;
 
-        protected override void OnAwake()
+        public override void Reset()
         {
-            base.OnAwake();
-
-            this._transform = this.Entity.ComponentContainer.GetComponent<DTransformComponent>();
+            base.Reset();
 
             this.GravityScale = 1.0f;
             this.Mass = 1.0f;
@@ -25,14 +23,18 @@ namespace DD.Components.Common
             this.Velocity = Vector2.Zero;
         }
 
+        protected override void OnAwake()
+        {
+            base.OnAwake();
+
+            this._transform = this.Entity.ComponentContainer.GetComponent<DTransformComponent>();
+        }
+
         protected override void OnUpdate(GameTime gameTime)
         {
             base.OnUpdate(gameTime);
 
-            // Apply physics calculations using forces and update position and velocity
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            // Apply gravity
             Vector2 gravity = new Vector2(DPhysicsConstants.GRAVITY_X, DPhysicsConstants.GRAVITY_Y) * this.GravityScale * this.Mass;
             AddForce(gravity);
 
