@@ -133,6 +133,24 @@ namespace DD.Managers
             return this.tilemap.IsEmpty(x, y);
         }
 
+        internal void SetBlockType(DBlockType type, Vector2 position)
+        {
+            SetBlockType(type, (int)position.X, (int)position.Y);
+        }
+        internal void SetBgoType(DBgoType type, Vector2 position)
+        {
+            SetBgoType(type, (int)position.X, (int)position.Y);
+        }
+
+        internal DBlockType GetBlockType(Vector2 position)
+        {
+            return GetBlockType((int)position.X, (int)position.Y);
+        }
+        internal DBgoType GetBgoType(Vector2 position)
+        {
+            return GetBgoType((int)position.X, (int)position.Y);
+        }
+
         internal void SetBlockType(DBlockType type, int x, int y)
         {
             this.tilemap.SetBlockType(type, x, y);
@@ -142,18 +160,9 @@ namespace DD.Managers
             this.tilemap.SetBgoType(type, x, y);
         }
 
-        internal DBlockType GetBlockType(Vector2 position)
-        {
-            return GetBlockType((int)position.X, (int)position.Y);
-        }
         internal DBlockType GetBlockType(int x, int y)
         {
             return this.tilemap.GetBlockType(x, y);
-        }
-
-        internal DBgoType GetBgoType(Vector2 position)
-        {
-            return GetBgoType((int)position.X, (int)position.Y);
         }
         internal DBgoType GetBgoType(int x, int y)
         {
