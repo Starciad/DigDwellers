@@ -12,10 +12,12 @@ namespace DD
 {
     internal class DGame : Game
     {
+        public DGraphicsManager GraphicsManager => this._graphicsManager;
         public DComponentManager ComponentManager => this._componentManager;
         public DEntityManager EntityManager => this._entityManager;
         public DTileMapManager TileMapManager => this._tileMapManager;
         public DInputManager InputManager => this._inputManager;
+        public DMapManager MapManager => this._mapManager;
 
         public DAssetsDatabase AssetsDatabase => this._assetsDatabase;
         public DMapElementsDatabase MapElementsDatabase => this._mapElementsDatabase;
@@ -31,6 +33,7 @@ namespace DD
         private readonly DTileMapManager _tileMapManager;
         private readonly DInputManager _inputManager;
         private readonly DMapManager _mapManager;
+        private readonly DGameRoutineManager _gameRoutineManager;
 
         private readonly DAssetsDatabase _assetsDatabase;
         private readonly DMapElementsDatabase _mapElementsDatabase;
@@ -74,6 +77,7 @@ namespace DD
             this._tileMapManager = new(this._mapElementsDatabase);
             this._inputManager = new();
             this._mapManager = new();
+            this._gameRoutineManager = new();
         }
 
         protected override void Initialize()
@@ -86,6 +90,7 @@ namespace DD
             this._tileMapManager.SetGameInstance(this);
             this._inputManager.SetGameInstance(this);
             this._mapManager.SetGameInstance(this);
+            this._gameRoutineManager.SetGameInstance(this);
 
             // Initialize
             this._graphicsManager.Initialize();
@@ -94,6 +99,7 @@ namespace DD
             this._tileMapManager.Initialize();
             this._inputManager.Initialize();
             this._mapManager.Initialize();
+            this._gameRoutineManager.Initialize();
             #endregion
 
             #region Database
@@ -117,11 +123,7 @@ namespace DD
 
         protected override void BeginRun()
         {
-            this._entityManager.Instantiate<DPlayer>(new(DScreenConstants.VIEW_WIDTH / 2, DScreenConstants.VIEW_HEIGHT / 2));
-
-            // this._sceneManager.LoadScene(this._assetsDatabase.GetMapxData("home"));
-            this._tileMapManager.Load(this._mapManager.GetChunk(0, 0));
-
+            this._gameRoutineManager.BeginRun();
             base.BeginRun();
         }
 
