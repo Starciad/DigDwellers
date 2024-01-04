@@ -9,6 +9,7 @@ namespace DD.Entities.Common.Player
     {
         private DTransformComponent _transformComponent;
         private DAnimatorComponent _animatorComponent;
+        private DPlayerStatusComponent _statusComponent;
 
         protected override void OnAwake()
         {
@@ -23,10 +24,13 @@ namespace DD.Entities.Common.Player
             _ = this.ComponentContainer.AddComponent<DDrawComponent>();
             _ = this.ComponentContainer.AddComponent<DPlayerControllerComponent>();
 
+            this._statusComponent = this.ComponentContainer.AddComponent<DPlayerStatusComponent>();
             this._animatorComponent = this.ComponentContainer.AddComponent<DAnimatorComponent>();
 
             // Settings
             OnAwake_Animation();
+
+            this._statusComponent.PickaxeTier = 1;
         }
 
         protected override void OnUpdate(GameTime gameTime)

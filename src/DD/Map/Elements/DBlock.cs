@@ -8,19 +8,19 @@ namespace DD.Map.Elements
     {
         internal readonly bool IsEmpty => this.blockType == DBlockType.Empty;
         internal readonly DBlockType BlockType => this.blockType;
-        internal readonly sbyte Level => this.level;
+        internal readonly sbyte Tier => this.tier;
         internal readonly Texture2D Texture => this.texture;
         internal readonly bool HasTexture => this.hasTexture;
 
         private readonly DBlockType blockType;
-        private readonly sbyte level;
+        private readonly sbyte tier;
         private readonly Texture2D texture;
         private readonly bool hasTexture;
 
-        internal DBlock(DBlockType blockType, sbyte level, Texture2D texture)
+        internal DBlock(DBlockType blockType, sbyte tier, Texture2D texture)
         {
             this.blockType = blockType;
-            this.level = level;
+            this.tier = tier;
             this.texture = texture;
             this.hasTexture = texture != null;
         }

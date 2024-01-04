@@ -18,6 +18,7 @@ namespace DD
         public DInputManager InputManager => this._inputManager;
 
         public DAssetsDatabase AssetsDatabase => this._assetsDatabase;
+        public DMapElementsDatabase MapElementsDatabase => this._mapElementsDatabase;
 
         // ================================= //
 

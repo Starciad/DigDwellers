@@ -1,5 +1,7 @@
 ﻿using DD.Constants;
+using DD.Databases;
 using DD.Managers;
+using DD.Map.Elements;
 using DD.Map.Enums;
 using DD.Utilities;
 
@@ -12,8 +14,10 @@ namespace DD.Components.Common.Player
     {
         private DInputManager _inputManager;
         private DTileMapManager _tileMapManager;
+        private DMapElementsDatabase _mapElementsDatabase;
 
         private DTransformComponent _transformComponent;
+        private DPlayerStatusComponent _statusComponent;
 
         private readonly Vector2[] directions =
         [
@@ -37,8 +41,10 @@ namespace DD.Components.Common.Player
 
             this._inputManager = this.Game.InputManager;
             this._tileMapManager = this.Game.TileMapManager;
+            this._mapElementsDatabase = this.Game.MapElementsDatabase;
 
             this._transformComponent = this.Entity.ComponentContainer.GetComponent<DTransformComponent>();
+            this._statusComponent = this.Entity.ComponentContainer.GetComponent<DPlayerStatusComponent>();
         }
 
         protected override void OnUpdate(GameTime gameTime)
@@ -70,10 +76,15 @@ namespace DD.Components.Common.Player
         private void HandleMovement(Vector2 targetPos)
         {
             DBlockType blockType = this._tileMapManager.GetBlockType(targetPos);
+            DBlock blockInfo = this._mapElementsDatabase.GetBlock(blockType);
 
             if (blockType == DBlockType.Empty)
             {
                 _transformComponent.SetPosition(DTileMapUtilities.ToWorldPosition(targetPos));
+            }
+            else if (blockInfo.Tier <= this._statusComponent.PickaxeTier)
+            {
+                this._tileMapManager.SetBlockType(DBlockType.Empty, targetPos);
             }
         }
     }
