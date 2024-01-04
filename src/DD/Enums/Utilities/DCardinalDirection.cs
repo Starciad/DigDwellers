@@ -1,4 +1,4 @@
-﻿namespace DD.Enums
+﻿namespace DD.Enums.Utilities
 {
     /// <summary>
     /// Represents cardinal directions.

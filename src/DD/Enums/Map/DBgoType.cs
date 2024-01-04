@@ -1,4 +1,4 @@
-﻿namespace DD.Map.Enums
+﻿namespace DD.Enums.Map
 {
     internal enum DBgoType : sbyte
     {

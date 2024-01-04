@@ -1,8 +1,8 @@
 ﻿using DD.Constants;
 using DD.Databases;
+using DD.Enums.Map;
 using DD.Extensions;
 using DD.Map.Elements;
-using DD.Map.Enums;
 using DD.Map.Serialization;
 using DD.Objects;
 using DD.TileMap;

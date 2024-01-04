@@ -1,4 +1,4 @@
-﻿using DD.Map.Enums;
+﻿using DD.Enums.Map;
 
 namespace DD.TileMap
 {

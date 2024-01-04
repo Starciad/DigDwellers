@@ -1,4 +1,4 @@
-﻿namespace DD.Animation.Enums
+﻿namespace DD.Enums.Animation
 {
     /// <summary>
     /// Specifies different modes for playing animations.

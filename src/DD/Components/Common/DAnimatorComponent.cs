@@ -1,5 +1,5 @@
 ﻿using DD.Animation;
-using DD.Animation.Enums;
+using DD.Enums.Animation;
 
 using Microsoft.Xna.Framework;
 

@@ -1,8 +1,8 @@
 ﻿using DD.Constants;
 using DD.Databases;
+using DD.Enums.Map;
 using DD.Managers;
 using DD.Map.Elements;
-using DD.Map.Enums;
 using DD.Utilities;
 
 using Microsoft.Xna.Framework;

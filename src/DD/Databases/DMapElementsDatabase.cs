@@ -1,5 +1,5 @@
-﻿using DD.Map.Elements;
-using DD.Map.Enums;
+﻿using DD.Enums.Map;
+using DD.Map.Elements;
 using DD.Objects;
 
 namespace DD.Databases
