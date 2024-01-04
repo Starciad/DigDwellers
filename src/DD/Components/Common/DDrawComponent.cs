@@ -13,7 +13,6 @@ namespace DD.Components.Common
         internal Vector2 Scale { get; private set; } = Vector2.One;
         internal float Rotation { get; private set; } = 0f;
         internal Color Color { get; private set; } = Color.White;
-        internal Vector2 Origin { get; private set; } = Vector2.Zero;
         internal SpriteEffects SpriteEffects { get; private set; } = SpriteEffects.None;
         internal float LayerDepth { get; private set; } = 0f;
 
@@ -28,7 +27,6 @@ namespace DD.Components.Common
             this.Position = Vector2.Zero;
             this.Scale = Vector2.Zero;
             this.Color = Color.White;
-            this.Origin = Vector2.Zero;
             this.SpriteEffects = SpriteEffects.None;
             this.LayerDepth = 0f;
         }
@@ -58,13 +56,12 @@ namespace DD.Components.Common
                 return;
             }
 
-            spriteBatch.Draw(this.Texture, this.Position, this.SourceRectangle, this.Color, this.Rotation, this.Origin, this.Scale, this.SpriteEffects, this.LayerDepth);
+            spriteBatch.Draw(this.Texture, this.Position, this.SourceRectangle, this.Color, this.Rotation, Vector2.Zero, this.Scale, this.SpriteEffects, this.LayerDepth);
         }
 
         internal void SetTexture(Texture2D value)
         {
             this.Texture = value;
-            this.Origin = this.Texture.GetCenterOrigin();
         }
         internal void SetSourceRectangle(Rectangle? value)
         {

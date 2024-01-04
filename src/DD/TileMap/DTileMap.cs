@@ -1,5 +1,7 @@
 ﻿using DD.Map.Enums;
 
+using System;
+
 namespace DD.TileMap
 {
     internal sealed class DTileMap
@@ -34,11 +36,13 @@ namespace DD.TileMap
 
         internal DBlockType GetBlockType(int x, int y)
         {
-            return this.tiles[x, y].GetBlock();
+            (int, int) pos = Clamp(x, y);
+            return this.tiles[pos.Item1, pos.Item2].GetBlock();
         }
         internal DBgoType GetBgoType(int x, int y)
         {
-            return this.tiles[x, y].GetBgo();
+            (int, int) pos = Clamp(x, y);
+            return this.tiles[pos.Item1, pos.Item2].GetBgo();
         }
 
         internal void Clear()
@@ -50,6 +54,14 @@ namespace DD.TileMap
                     this.tiles[x, y].Clear();
                 }
             }
+        }
+
+        internal (int, int) Clamp(int x, int y)
+        {
+            int posX = Math.Clamp(x, 0, this.width - 1);
+            int posY = Math.Clamp(y, 0, this.height - 1);
+
+            return (posX, posY);
         }
     }
 }

@@ -69,7 +69,7 @@ namespace DD.Entities.Common.Player
             ar_attacking.AddFrame(DSpriteUtilities.GetSprite(spriteScale, new(0, 0)));
             #endregion
 
-            this._animatorComponent.Play("MOVEMENT_R");
+            this._animatorComponent.Play("IDLE_L");
         }
     }
 }
