@@ -18,6 +18,7 @@ namespace DD.Components.Common.Player
 
         private DTransformComponent _transformComponent;
         private DPlayerStatusComponent _statusComponent;
+        private DSmoothComponent _smoothComponent;
 
         private readonly Vector2[] directions =
         [
@@ -45,6 +46,7 @@ namespace DD.Components.Common.Player
 
             this._transformComponent = this.Entity.ComponentContainer.GetComponent<DTransformComponent>();
             this._statusComponent = this.Entity.ComponentContainer.GetComponent<DPlayerStatusComponent>();
+            this._smoothComponent = this.Entity.ComponentContainer.GetComponent<DSmoothComponent>();
         }
 
         protected override void OnUpdate(GameTime gameTime)
@@ -80,7 +82,7 @@ namespace DD.Components.Common.Player
 
             if (blockType == DBlockType.Empty)
             {
-                _transformComponent.SetPosition(DTileMapUtilities.ToWorldPosition(targetPos));
+                this._smoothComponent.SetPosition(DTileMapUtilities.ToWorldPosition(targetPos));
             }
             else if (blockInfo.Tier <= this._statusComponent.PickaxeTier)
             {
