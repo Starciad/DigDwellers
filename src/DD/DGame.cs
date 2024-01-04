@@ -81,6 +81,16 @@ namespace DD
 
         protected override void Initialize()
         {
+            #region Database
+            // Settings
+            this._assetsDatabase.SetGameInstance(this);
+            this._mapElementsDatabase.SetGameInstance(this);
+
+            // Initialize
+            this._assetsDatabase.Initialize();
+            this._mapElementsDatabase.Initialize();
+            #endregion
+
             #region Managers
             // Settings
             this._graphicsManager.SetGameInstance(this);
@@ -101,16 +111,6 @@ namespace DD
             this._gameRoutineManager.Initialize();
             #endregion
 
-            #region Database
-            // Settings
-            this._assetsDatabase.SetGameInstance(this);
-            this._mapElementsDatabase.SetGameInstance(this);
-
-            // Initialize
-            this._assetsDatabase.Initialize();
-            this._mapElementsDatabase.Initialize();
-            #endregion
-
             base.Initialize();
         }
 
@@ -128,6 +128,7 @@ namespace DD
 
         protected override void Update(GameTime gameTime)
         {
+            this._gameRoutineManager.Update(gameTime);
             this._inputManager.Update(gameTime);
             this._entityManager.Update(gameTime);
 
@@ -149,9 +150,9 @@ namespace DD
             this._sb.Begin();
             this._sb.End();
 
-            // SCENE
+            // VIEW
             this.GraphicsDevice.SetRenderTarget(this._graphicsManager.ViewRenderTarget);
-            this.GraphicsDevice.Clear(Color.Cyan);
+            this.GraphicsDevice.Clear(this._gameRoutineManager.BackgroundColor);
             this._sb.Begin();
             this._tileMapManager.Draw(this._sb, gameTime);
             this._entityManager.Draw(this._sb, gameTime);

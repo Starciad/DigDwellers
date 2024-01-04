@@ -63,10 +63,9 @@ namespace DD.Databases
             string specials_path = Path.Combine(mapx_path, "specials");
 
             // SPECIALS (LOAD)
-            this.mapxFiles.Add("home", DMapxSerializer.Deserialize(Path.Combine(specials_path, "home.mapx")));
-
-            // CHUNKS (LOAD)
-            // [ ... ]
+            this.mapxFiles.Add("lobby", DMapxSerializer.Deserialize(Path.Combine(specials_path, "lobby.mapx")));
+            this.mapxFiles.Add("legendary_cave", DMapxSerializer.Deserialize(Path.Combine(specials_path, "legendary_cave.mapx")));
+            this.mapxFiles.Add("underground_home", DMapxSerializer.Deserialize(Path.Combine(specials_path, "underground_home.mapx")));
         }
         #endregion
 

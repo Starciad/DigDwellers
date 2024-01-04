@@ -41,12 +41,18 @@
 		<Compile Remove="Collection\**" />
 		<EmbeddedResource Remove="Collection\**" />
 		<None Remove="Collection\**" />
+		<None Update="assets\mapx\specials\underground_home.mapx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 
 		<!-- WORLD -->
 		<None Update="assets\mapx\specials\legendary_cave.mapx">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="assets\mapx\specials\home.mapx">
+		<None Update="assets\mapx\specials\lobby.mapx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\mapx\specials\underground_home.mapx">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>

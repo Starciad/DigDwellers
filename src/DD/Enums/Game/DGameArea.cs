@@ -4,5 +4,6 @@
     {
         Lobby,
         Underground,
+        LegendaryCave
     }
 }
